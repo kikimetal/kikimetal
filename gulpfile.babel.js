@@ -92,6 +92,7 @@ gulp.task("css-min",
 
 gulp.task("browserify", ()=>{
     return browserify({
+        extensions: [".jsx"],
         entries: [`./js/src/${indexJs}`],
         debug: true,
     })
@@ -106,6 +107,7 @@ gulp.task("browserify", ()=>{
 
 gulp.task("browserify-min", ()=>{
     return browserify({
+        extensions: [".jsx"],
         entries: [`./js/src/${indexJs}`],
     })
         .transform(babelify, {
