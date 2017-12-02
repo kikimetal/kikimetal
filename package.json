@@ -7,7 +7,10 @@
     "url": "https://github.com/kikimetal/kikimetal"
   },
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "start": "open -a safari http://localhost:5000 && php -S localhost:5000",
+    "build": "gulp build"
+  },
   "keywords": [],
   "author": "kikimetal",
   "license": "ISC",
@@ -18,6 +21,7 @@
     "react-fontawesome": "^1.6.1",
     "react-helmet": "^5.2.0",
     "react-router-dom": "^4.2.2",
+    "react-router-transition": "^1.1.2",
     "react-scroll": "^1.6.7"
   },
   "devDependencies": {
