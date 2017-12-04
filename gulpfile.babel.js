@@ -1,7 +1,5 @@
-// deployment dir name
-const deploymentDir = "__build"
-// index file
-const indexHtml = "index.php"
+import fs from "fs"
+
 // entry point js file name
 const indexJs = "index.js"
 // bundle js file name
@@ -22,144 +20,103 @@ import del from "del"
 import cleanCSS from "gulp-clean-css"
 import autoprefixer from "gulp-autoprefixer"
 
-gulp.task("sass-compile-components", ()=>{
-    return gulp.src([
-      "./css/src/components/*.sass",
-      "./css/src/components/*.scss",
-    ])
-        .pipe(sass({
-            outputStyle: "expanded",
-        }))
-        .pipe(concat("bundle-components.css"))
-        .pipe(autoprefixer({
-            browsers: ['last 2 versions'],
-            cascade: false
-        }))
-        .pipe(gulp.dest("./css/src/"))
+gulp.task("css:clean", () => {
+  return del(["./assets/css/*"])
 })
 
-gulp.task("sass-compile-common", () => {
-    return gulp.src([
-        "./css/src/common/myreset.css",
-        "./css/src/common/common.sass",
-        "./css/src/common/*.sass",
-        "./css/src/common/*.scss",
-    ])
-        .pipe(sass({
-            outputStyle: "expanded",
-        }))
-        .pipe(concat("bundle-common.css"))
-        .pipe(autoprefixer({
-            browsers: ['last 2 versions'],
-            cascade: false
-        }))
-        .pipe(gulp.dest("./css/src/"))
-})
+const sassSrc = [
+  "./src/css/common/*.css",
+  "./src/css/common/*.scss",
+  "./src/css/components/*.scss",
+]
 
-gulp.task("css",
-    [
-        "sass-compile-common",
-        "sass-compile-components",
-    ],
-    () => {
-        return gulp.src([
-            "./css/src/bundle-common.css",
-            "./css/src/bundle-components.css",
-        ])
-        .pipe(concat(bundleCSS))
-        .pipe(gulp.dest("./css/"))
-    }
+gulp.task("css", ["css:clean",], () => {
+  return gulp.src(sassSrc)
+    .pipe(sass({
+      outputStyle: "expanded",
+    }))
+    .pipe(concat("bundle.css"))
+    .pipe(autoprefixer({
+      browsers: ['last 2 versions'],
+      cascade: false
+    }))
+    .pipe(gulp.dest("./assets/css/"))
+  }
+)
+gulp.task("css:min", ["css:clean",], () => {
+  return gulp.src(sassSrc)
+    .pipe(sass())
+    .pipe(concat("bundle.css"))
+    .pipe(autoprefixer({
+      browsers: ['last 2 versions'],
+      cascade: false
+    }))
+    // minify
+    .pipe(cleanCSS({debug: true}, function(details) {
+      console.log(details.name + '(originalSize): ' + details.stats.originalSize)
+      console.log(details.name + '(minifiedSize): ' + details.stats.minifiedSize)
+    }))
+    .pipe(gulp.dest("./assets/css/"))
+  }
 )
 
-gulp.task("css-min",
-    [
-        "sass-compile-common",
-        "sass-compile-components",
-    ],
-    () => {
-        return gulp.src([
-            "./css/src/bundle-common.css",
-            "./css/src/bundle-components.css",
-        ])
-        .pipe(concat(bundleCSS))
-        .pipe(cleanCSS({debug: true}, function(details) {
-            console.log(details.name + '(originalSize): ' + details.stats.originalSize)
-            console.log(details.name + '(minifiedSize): ' + details.stats.minifiedSize)
-        }))
-        .pipe(gulp.dest("./css/"))
-    }
-)
-
-gulp.task("browserify", ()=>{
-    return browserify({
-        extensions: [".jsx"],
-        entries: [`./js/src/${indexJs}`],
-        debug: true,
-    })
-        .transform(babelify, {
-            presets: ["es2015", "react"],
-        })
-        .bundle()
-        .on("error", function (err) { console.log("Error : " + err.message) })
-        .pipe(source(bundleIndexJs)) // 出力ファイル名を指定
-        .pipe(gulp.dest("./js/"))
+gulp.task("js:clean", () => {
+  return del(["./assets/js/*"])
 })
 
-gulp.task("browserify-min", ()=>{
-    return browserify({
-        extensions: [".jsx"],
-        entries: [`./js/src/${indexJs}`],
-    })
-        .transform(babelify, {
-            presets: ["es2015", "react"],
-        })
-        .bundle()
-        .pipe(source(bundleIndexMinJs)) // 出力ファイル名を指定
-        .pipe(buffer())
-        .pipe(uglify())
-        .pipe(gulp.dest("./js/"))
+const browserifyEntryPoint = ["./src/js/index.js"]
+
+gulp.task("js", ["js:clean"], () => {
+  // make fake file
+  fs.writeFile("./assets/js/bundle.min.js", "/* this is dammy file for load resource error. */", () => console.log("(gulp) create dammy file '/assets/js/bundle.min.js'"))
+  console.log("(gulp) ---browserify-env-development---")
+
+  return browserify({
+    extensions: [".jsx"],
+    entries: browserifyEntryPoint,
+    debug: true,
+  })
+  .transform(babelify, {
+    presets: ["es2015", "react"],
+  })
+  .bundle()
+  .on("error", function (err) { console.log("Error : " + err.message) })
+  .pipe(source("bundle.js"))
+  .pipe(gulp.dest("./assets/js/"))
 })
 
-gulp.task("apply-prod-environment", ()=>{
-    return process.env.NODE_ENV = "production"
+gulp.task("js:min", ["js:clean"], () => {
+  process.env.NODE_ENV = "production";
+  // make fake file
+  fs.writeFile("./assets/js/bundle.js", "/* this is dammy file for load resource error. */", () => console.log("(gulp) create dammy file '/assets/js/bundle.js'"))
+  console.log("(gulp) ---browserify-env-production---")
+
+  return browserify({
+    extensions: [".jsx"],
+    entries: browserifyEntryPoint,
+  })
+  .transform(babelify, {
+    presets: ["es2015", "react"],
+  })
+  .bundle()
+  .pipe(source("bundle.min.js"))
+  .pipe(buffer())
+  .pipe(uglify())
+  .pipe(gulp.dest("./assets/js/"))
 })
 
-gulp.task("clean", (callback)=>{
-    return del([
-        `./${deploymentDir}/**/*`,
-    ], callback)
+gulp.task("dist:clean", () => {
+  return del(["./__dist/*"])
+})
+gulp.task("dist", ["dist:clean", "js:min", "css:min"], () => {
+  gulp.src("./index.php")
+    .pipe(gulp.dest("./__dist/"))
+  gulp.src("./assets/**/*")
+    .pipe(gulp.dest("./__dist/assets/"))
 })
 
-gulp.task("build", // deployment index
-    [
-        "clean",
-        "apply-prod-environment",
-        "css-min",
-        "browserify-min",
-    ], ()=>{
-        gulp.src(`./routes.json`)
-            .pipe(gulp.dest(`./${deploymentDir}/`))
-        gulp.src(`./${indexHtml}`)
-            .pipe(gulp.dest(`./${deploymentDir}/`))
-        gulp.src(`./image/**/*`)
-            .pipe(gulp.dest(`./${deploymentDir}/image/`))
-        gulp.src(`./js/${bundleIndexMinJs}`)
-            .pipe(gulp.dest(`./${deploymentDir}/js/`))
-        gulp.src(`./css/${bundleCSS}`)
-            .pipe(gulp.dest(`./${deploymentDir}/css/`))
-    }
-)
+gulp.task("d", ["dist"])
 
-gulp.task("watch", ["default"], ()=>{
-    gulp.watch("./css/**/*", [
-        "css",
-    ])
-    gulp.watch("./js/src/**/*.js", [
-        "browserify",
-    ])
-})
+gulp.task("build", ["js", "css"])
 
-gulp.task("default", [
-    "css",
-    "browserify",
-])
+gulp.task("default", ["build"])

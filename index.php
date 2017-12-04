@@ -1,7 +1,6 @@
 <?php
-// router---------------------------------------------
-// meta.json を読み込み
-$json = file_get_contents("./routes.json");
+// router
+$json = file_get_contents("./assets/routes.json");
 $json = mb_convert_encoding($json, 'UTF8', 'ASCII,JIS,UTF-8,EUC-JP,SJIS-WIN');
 $routes = json_decode($json, true); // 配列へ
 
@@ -20,7 +19,6 @@ if (isset($routes[$requestURL])) {
   $route = null;
   http_response_code(404);
 }
-// router---------------------------------------------
 
 // static なファイルの読み込みに使うURL
 $host = (empty($_SERVER["HTTPS"]) ? "http://" : "https://") . $_SERVER["HTTP_HOST"];
@@ -35,10 +33,11 @@ $host = (empty($_SERVER["HTTPS"]) ? "http://" : "https://") . $_SERVER["HTTP_HOS
   <!-- <link rel="shortcut icon" href="img/favicon.ico"> -->
   <!-- <link rel="apple-touch-icon" href="img/apple-touch-icon.png"> -->
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="<?= $host ?>/css/bundle.css">
+  <link rel="stylesheet" href="<?= $host ?>/assets/css/bundle.css">
   <style media="screen">
     #server-side{
-      background: #333;
+      padding: 10px 0;
+      background: rgb(35, 129, 205);
       color: white;
     }
   </style>
@@ -55,7 +54,8 @@ $host = (empty($_SERVER["HTTPS"]) ? "http://" : "https://") . $_SERVER["HTTP_HOS
   </div>
 
   <div id="app"></div>
-  <script src="/js/bundle.js" charset="utf-8"></script>
+  <script src="<?= $host ?>/assets/js/bundle.js" charset="utf-8"></script>
+  <script src="<?= $host ?>/assets/js/bundle.min.js" charset="utf-8"></script>
 
 </body>
 </html>

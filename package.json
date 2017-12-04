@@ -9,7 +9,8 @@
   "main": "index.js",
   "scripts": {
     "start": "open -a safari http://localhost:5000 && php -S localhost:5000",
-    "build": "gulp build"
+    "build": "gulp build",
+    "dist": "gulp dist"
   },
   "keywords": [],
   "author": "kikimetal",
