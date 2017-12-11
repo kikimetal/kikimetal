@@ -32,3 +32,5 @@
 ### react-router-transition 試す
 
 ### Redux 入れる
+
+### google charts 試す
