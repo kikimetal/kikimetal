@@ -103,6 +103,7 @@ gulp.task("css:min", ["css:clean"], () =>
 // use "gulp server"
 import browserSync from "browser-sync"
 import php from "gulp-connect-php"
+const port = 8080
 
 gulp.task("server", ["browser-sync"], () => {
   gulp.watch("./public/**/*", ["browser-reload"])
@@ -111,14 +112,14 @@ gulp.task("server", ["browser-sync"], () => {
 gulp.task("php-built-in-server", () => {
   return php.server({
     base: "public/",
-    port: 8000,
+    port: port,
   })
 })
 
 gulp.task("browser-sync", ["php-built-in-server"], () => {
   return browserSync({
-    proxy: "localhost:8000",
-    port: 8000,
+    proxy: `localhost:${port}`,
+    port: port,
     open: "external",
   })
 })
