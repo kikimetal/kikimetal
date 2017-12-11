@@ -8,24 +8,22 @@
 
 ## TODO
 - [x] **src, build それぞれディレクトリの構造変更**
+  - **Before**
+    - index.html
+    - js
+    - css
+    - img
+    - その他のディレクトリ
+    - その他のディレクトリ...
 
-**Before**
-- index.html
-- js
-- css
-- img
-- その他のディレクトリ
-- その他のディレクトリ
-- その他のディレクトリ...
-
-**After**
-- index.html
-- assets
-  - js
-  - css
-  - ...
-- その他のディレクトリ
-- その他のディレクトリ...
+  - **After**
+    - index.html
+    - **assets**
+      - js
+      - css
+      - ...
+    - その他のディレクトリ
+    - その他のディレクトリ...
 
 - [x] **それに伴って gulpfile の修正**
 
