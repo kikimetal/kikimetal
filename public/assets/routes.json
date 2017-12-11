@@ -1,0 +1,22 @@
+{
+  "/": {
+    "title": "Home(ROOT)",
+    "description": "meta description of HOME."
+  },
+  "/about": {
+    "title": "About",
+    "description": "meta description of about."
+  },
+  "/products": {
+    "title": "Products",
+    "description": "meta description of Products."
+  },
+  "/products/cyan": {
+    "title": "Cyan",
+    "description": "meta description of cyan."
+  },
+  "/products/yellow": {
+    "title": "Yellow",
+    "description": "meta description of yellow."
+  }
+}
