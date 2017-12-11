@@ -7,7 +7,7 @@
 
 
 ## TODO
-### src, build それぞれディレクトリの構造変更:clear
+- [x] **src, build それぞれディレクトリの構造変更**
 
 **Before**
 - index.html
@@ -27,10 +27,12 @@
 - その他のディレクトリ
 - その他のディレクトリ...
 
-### それに伴って gulpfile の修正:clear
+- [x] **それに伴って gulpfile の修正**
 
-### react-router-transition 試す
+- [x] **react-router-transition 試す**
+...webpack で bundle する必要あり...
+  - [x] webpack導入
 
-### Redux 入れる
+- [ ] **Redux**
 
-### google charts 試す
+- [ ] **google charts 試す**
