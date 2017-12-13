@@ -6,11 +6,14 @@ import KikiStar from "./KikiStar"
 
 const Nav = () => (
   <div className="Nav">
-    <h2><KikiStar /> KIKIMETAL HEADER <i className="fas fa-circle-notch fa-lg fa-spin"></i></h2>
+    <div><KikiStar /> KIKIMETAL</div>
     <ul>
-      <li><NavLink exact to="/"><Btn>Home</Btn></NavLink></li>
-      <li><NavLink exact to="/about"><Btn>About</Btn></NavLink></li>
-      <li><NavLink exact to="/products"><Btn>Products</Btn></NavLink></li>
+      <li><NavLink exact to="/"><Btn>
+        <i className="fas fa-bug" />Home</Btn></NavLink></li>
+      <li><NavLink exact to="/about"><Btn>
+        <i className="fas fa-bomb" />About</Btn></NavLink></li>
+      <li><NavLink exact to="/products"><Btn>
+        <i className="fas fa-bolt" />Products</Btn></NavLink></li>
     </ul>
   </div>
 )

@@ -1,18 +1,29 @@
 .Nav{
   display: flex;
-  justify-content: center;
+  flex-flow: column wrap;
+  justify-content: space-around;
   align-items: center;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
+  padding: 10px;
   height: 100px;
-  background: rgb(255, 181, 128);
+  background: rgb(181, 231, 255);
+  color: #666;
   z-index: 999;
-  // react-router -> NavLink で 現在ルートの a に .active が付く。
-  a.active{
-    filter: grayscale(0.2) brightness(1.1) opacity(0.6);
-    // cursor: not-allowed;
+
+  .Btn{
+    transition: 0.3s ease;
+  }
+  a.active .Btn{
+    // react-router -> NavLink で 現在ルートの a に .active が付く。
+    filter: grayscale(0.2) brightness(1.1) opacity(0.6) blur(1px);
     pointer-events: none;
+  }
+
+  font-size: 1rem;
+  @media screen and (min-width: 768px){
+    font-size: 1.4rem;
   }
 }
