@@ -3,7 +3,7 @@ import Helmet from "react-helmet"
 import { connect } from "react-redux"
 
 // 引数の path :string が 存在する route か確認。
-// 存在すれば path を、しなければ false を返す。
+// 存在すれば path を、しなければ ルートの情報 を返す。
 const ROUTES = window.__ROUTES__
 const checkRoute = path => {
   const route = Object.keys(ROUTES).find(route => route === path) || false
@@ -26,7 +26,9 @@ const MyHelmet = ({ currentPath }) => {
 
 class ScrollToTopOnMount extends React.Component {
   componentDidUpdate(prevProps) {
-    window.scrollTo(0, 0)
+    // Y方向を 0にすると、iOS系のブラウザでURL入力欄が大きくなる
+    // 1 にすることでそれを防げる
+    window.scrollTo(0, 1)
   }
   render() {
     return null
