@@ -31,6 +31,7 @@
 ...webpack で bundle する必要あり...
   - [x] webpack導入
 
-- [ ] **Redux**
+- [x] **Redux**
+  - [x] react-router-redux
 
 - [ ] **google charts 試す**

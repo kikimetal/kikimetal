@@ -3,10 +3,16 @@
 @charset "UTF-8";
 @import "myreset";
 
+*{
+  box-sizing: border-box;
+}
+
 body{
   font-family: monospace;
   color: #555;
   text-align: center;
+
+  margin-top: 100px
 }
 h1, h2, p{
   padding: 0.4em 0;
@@ -15,44 +21,7 @@ h1, h2, p{
   color: turquoise;
 }
 .error{
-  color: red;
-}
-
-.grid{
-  display: grid;
-  grid-template:
-    "header" 100px
-    "main" 1fr
-    "side" 100px
-    "footer" 100px
-    / 100%;
-  height: 80vh;
-  color: white;
-  @media screen and (min-width: 600px){
-    grid-template:
-      "header header header" auto
-      "main   main   side" 1fr
-      "footer footer footer" 100px
-      / 1fr 1fr 60px;
-  }
-
-  .header{
-    grid-area: header;
-    background: rgb(255, 181, 128);
-  }
-  .main{
-    grid-area: main;
-    background: rgb(255, 194, 240);
-    color: dimgrey;
-  }
-  .side{
-    grid-area: side;
-    background: lightgrey;
-  }
-  .footer{
-    grid-area: footer;
-    background: turquoise;
-  }
+  color: crimson;
 }
 
 ul{
@@ -66,10 +35,24 @@ a{
   text-decoration: none;
 }
 
-.switch-wrapper {
+.animated-switch-wrapper {
   position: relative;
+  & > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    min-height: calc(100vh - 100px);
+  }
 }
 
-.switch-wrapper > div {
-  position: absolute;
+.page{
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
 }

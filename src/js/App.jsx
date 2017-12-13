@@ -1,24 +1,38 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import {
-  BrowserRouter,
-  Link,
-  Route,
-  Switch,
-} from 'react-router-dom'
+import { BrowserRouter, Link, Route, Switch } from 'react-router-dom'
 
+// redux
+import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { Provider } from 'react-redux'
+import { ConnectedRouter, routerMiddleware, routerReducer, push } from 'react-router-redux'
+import { createBrowserHistory } from "history"
+const history = createBrowserHistory()
+const middleware = routerMiddleware(history)
+import reducers from "./modules/reducers"
+const store = createStore(
+  combineReducers({
+    ...reducers,
+    router: routerReducer
+  }),
+  applyMiddleware(middleware)
+)
+
+// containers
+import MyHelmet from "./containers/MyHelmet"
+import Home from "./containers/Home"
+import About from "./containers/About"
+import Products from "./containers/Products"
+
+// components
+import NotFound from "./components/NotFound"
 import Btn from "./components/Btn"
-import Home from "./Home"
-import About from "./About"
-import Products from "./Products"
-import NotFound from "./NotFound"
+import KikiStar from './components/KikiStar'
+import Nav from "./components/Nav"
 
+// TODO
+// transition
 import { spring, AnimatedSwitch } from 'react-router-transition'
-
-// import '../css/common/common.scss'
-// import '../css/components/Btn.scss'
-// import './App.scss'
-
 // we need to map the `scale` prop we define below
 // to the transform style property
 function mapStyles(styles) {
@@ -59,63 +73,36 @@ const bounceTransition = {
   },
 };
 
-// console.log(bounceTransition.atLeave.opacity)
-// console.log(bounceTransition.atActive.opacity)
-
-import KikiStar from './components/KikiStar'
-import Bg from './components/Bg'
-
 export default class App extends React.Component{
   render(){
     return (
-      <BrowserRouter>
-        <div className="App">
-          <div className="grid">
-            <ul className="header">
-              <div>
+      <Provider store={store}>
+        <ConnectedRouter history={history}>
+          <div className="App">
 
-                <Bg />
-                <Bg />
-                <Bg />
-                <KikiStar />
-              </div>
-              <Bg />
-              <h2>Header</h2>
-              <i className="fas fa-user fa-2x fa-spin"></i>
-              <li><Link to="/"><Btn>Home</Btn></Link></li>
-              <li><Link to="/about"><Btn>About</Btn></Link></li>
-              <li><Link to="/products"><Btn>Products</Btn></Link></li>
-            </ul>
-            <div className="main">
+            <MyHelmet />
+            <Nav />
 
-              <AnimatedSwitch
-                atEnter={bounceTransition.atEnter}
-                atLeave={bounceTransition.atLeave}
-                atActive={bounceTransition.atActive}
-                mapStyles={mapStyles}
-                className="switch-wrapper"
-                >
-                <Route exact path="/" component={Home} />
-                <Route exact path="/about" component={About} />
-                <Route path="/products" component={Products} />
-                <Route component={NotFound} />
-              </AnimatedSwitch>
+            <AnimatedSwitch
+              atEnter={bounceTransition.atEnter}
+              atLeave={bounceTransition.atLeave}
+              atActive={bounceTransition.atActive}
+              mapStyles={mapStyles}
+              className="animated-switch-wrapper"
+            >
+              <Route exact path="/" component={Home} />
+              <Route exact path="/about" component={About} />
+              <Route path="/products" component={Products} />
+              <Route component={NotFound} />
+            </AnimatedSwitch>
 
-            </div>
-            <div className="side">side</div>
-            <div className="footer">footer</div>
-          </div>{/* grid */}
+            <footer>
+              <small>Powered by KIKIMETAL.</small>
+            </footer>
 
-          <div className="test">
-            <h1>TEST</h1>
-          </div>
-
-        </div>
-      </BrowserRouter>
+          </div>{/*App*/}
+        </ConnectedRouter>
+      </Provider>
     )
   }
 }
-
-// const KikiStar = () => (
-//   <div>k</div>
-// )

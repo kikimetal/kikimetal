@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Home = () => (
-  <div className="Home fade-in">
+  <div className="Home page">
     <h1>Home</h1>
     <p>
       home... home... home... home... home... home...

@@ -1,22 +1,27 @@
 {
   "/": {
-    "title": "Home(ROOT)",
-    "description": "meta description of HOME."
+    "title": "KIKIMETAL",
+    "description": "meta description of KIKIMETAL(HOME).",
+    "canonical": "https://www.kikimetal.com"
   },
   "/about": {
     "title": "About",
-    "description": "meta description of about."
+    "description": "meta description of About.",
+    "canonical": "https://www.kikimetal.com/about"
   },
   "/products": {
     "title": "Products",
-    "description": "meta description of Products."
+    "description": "meta description of Products.",
+    "canonical": "https://www.kikimetal.com/products"
   },
   "/products/cyan": {
     "title": "Cyan",
-    "description": "meta description of cyan."
+    "description": "meta description of cyan.",
+    "canonical": "https://www.kikimetal.com/products/cyan"
   },
   "/products/yellow": {
     "title": "Yellow",
-    "description": "meta description of yellow."
+    "description": "meta description of yellow.",
+    "canonical": "https://www.kikimetal.com/products/yellow"
   }
 }

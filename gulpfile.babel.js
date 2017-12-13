@@ -4,18 +4,17 @@ import plumber from "gulp-plumber"
 import del from "del"
 
 // practical commands ----------------------------
-// php server
-gulp.task("start", ["server"])
 // build js & css
-gulp.task("default", ["build"])
-gulp.task("build", ["js", "css"])
+gulp.task("default", ["js", "css"])
 // watch
 gulp.task("watch", ["js", "css"], () => {
   gulp.watch("./src/js/**/*", ["js"])
   gulp.watch("./src/css/**/*", ["css"])
 })
 // use webpack env:production & css minify
-gulp.task("dist", ["js:prod", "css:min"])
+gulp.task("prod", ["js:prod", "css:min"])
+// php server
+gulp.task("server", ["php-built-in-server"])
 // -----------------------------------------------
 
 // js build use webpack in gulp
@@ -53,6 +52,7 @@ import sourcemaps from "gulp-sourcemaps"
 
 const scssPath = [
   "./src/css/common/*.scss",
+  "./src/css/*.scss",
   "./src/css/**/*.scss",
 ]
 const cssOutputPath = path.resolve(__dirname, "public", "assets", "css")
@@ -105,18 +105,18 @@ import browserSync from "browser-sync"
 import php from "gulp-connect-php"
 const port = 8080
 
-gulp.task("server", ["browser-sync"], () => {
+gulp.task("php-built-in-server", ["browser-sync"], () => {
   gulp.watch("./public/**/*", ["browser-reload"])
 })
 
-gulp.task("php-built-in-server", () => {
+gulp.task("php", () => {
   return php.server({
     base: "public/",
     port: port,
   })
 })
 
-gulp.task("browser-sync", ["php-built-in-server"], () => {
+gulp.task("browser-sync", ["php"], () => {
   return browserSync({
     proxy: `localhost:${port}`,
     port: port,
