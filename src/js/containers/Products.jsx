@@ -19,7 +19,7 @@ const Products = (props) => (
       <Route exact path="/products" render={ () => props.selectedItem ? <Redirect to={`/products/${props.selectedItem}`} /> : <PleaseSelect/> } />
       <Route exact path="/products/cyan" component={Cyan} />
       <Route exact path="/products/yellow" component={Yellow} />
-      <Route component={NotFound} />
+      <Route render={() => <Redirect to={`/products`} />} />
     </Switch>
   </div>
 )
