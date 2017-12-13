@@ -7,10 +7,10 @@
   top: 0;
   left: 0;
   right: 0;
-  padding: 10px;
-  height: 100px;
-  background: rgb(181, 231, 255);
-  color: #666;
+  padding: 1em 0;
+  height: 120px;
+  background: rgb(203, 249, 255);
+  color: #000;
   z-index: 999;
 
   .Btn{
@@ -22,8 +22,8 @@
     pointer-events: none;
   }
 
-  font-size: 1rem;
+  font-size: 0.9rem;
   @media screen and (min-width: 768px){
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
 }

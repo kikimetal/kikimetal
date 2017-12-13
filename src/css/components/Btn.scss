@@ -1,11 +1,11 @@
 .Btn{
   display: inline-block;
   margin: 0.2em;
-  padding: 0.5em 1em;
+  padding: 0.4em calc(0.5em + 2vw);
   color: white;
   background: rgb(88, 209, 213);
   border-radius: 4px;
-  font-size: 18px;
+  font-size: 1.2em;
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
   cursor: pointer;
   *{
