@@ -29,9 +29,12 @@
 
 - [x] **react-router-transition 試す**
 ...webpack で bundle する必要あり...
-  - [x] webpack導入
+  - [x] webpack 導入
+  - [x] AnimatedSwitch 導入 -> テスト
+  - [ ] AnimatedRoute 導入 -> テスト
 
 - [x] **Redux**
   - [x] react-router-redux
+  - [ ] redux-form
 
 - [ ] **google charts 試す**
