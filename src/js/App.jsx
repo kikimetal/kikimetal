@@ -30,7 +30,7 @@ import Btn from "./components/Btn"
 import KikiStar from './components/KikiStar'
 import Nav from "./components/Nav"
 
-// TODO
+// TODO transition 処理をうまく分離する
 // transition
 import { spring, AnimatedSwitch } from 'react-router-transition'
 // we need to map the `scale` prop we define below

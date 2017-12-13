@@ -51,6 +51,7 @@ import autoprefixer from "gulp-autoprefixer"
 import sourcemaps from "gulp-sourcemaps"
 
 const scssPath = [
+  "!./src/css/test/**/*",
   "./src/css/common/*.scss",
   "./src/css/*.scss",
   "./src/css/**/*.scss",

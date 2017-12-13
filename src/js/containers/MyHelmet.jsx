@@ -11,15 +11,26 @@ const checkRoute = path => {
 }
 
 const MyHelmet = ({ currentPath }) => {
-  // console.log(currentPath, checkRoute(currentPath))
   const route = checkRoute(currentPath)
   return (
-    <Helmet>
-      <title>{route.title}</title>
-      <meta name="description" content={route.description} />
-      <link rel="canonical" href={route.canonical} />
-    </Helmet>
+    <div>
+      <ScrollToTopOnMount />
+      <Helmet>
+        <title>{route.title}</title>
+        <meta name="description" content={route.description} />
+        <link rel="canonical" href={route.canonical} />
+      </Helmet>
+    </div>
   )
+}
+
+class ScrollToTopOnMount extends React.Component {
+  componentDidUpdate(prevProps) {
+    window.scrollTo(0, 0)
+  }
+  render() {
+    return null
+  }
 }
 
 const mapStateToProps = state => ({ currentPath: state.router.location.pathname })
