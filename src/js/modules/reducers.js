@@ -4,7 +4,6 @@ export const initialState = {
     age: 21,
   },
   selectedItem: null,
-  // page: null,
 }
 
 const kiki = (kiki = initialState.kiki, action) => {
@@ -43,12 +42,9 @@ const selectedItem = (state = initialState.selectedItem, action) => {
   }
 }
 
-// const page = (state = initialState.page) => state
-
 export const reducers = {
   kiki,
   selectedItem,
-  // page,
 }
 
 export default reducers
