@@ -2,10 +2,10 @@ import React from "react"
 // components
 import Btn from "../components/Btn"
 
-const Form = () => {
+const MailForm = () => {
   return (
     <div>
-      <h1>Form</h1>
+      <h1>MailForm</h1>
       <form action={`${window.location.href}assets/mailer.php`} method="post">
         <p>件名:<br/><input name="title" defaultValue="テストメールだお" /></p>
         <p>名前:<br/><input name="name" defaultValue="テストマン" /></p>
@@ -18,4 +18,4 @@ const Form = () => {
     </div>
   )
 }
-export default Form
+export default MailForm

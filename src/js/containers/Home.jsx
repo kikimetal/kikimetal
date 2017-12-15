@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 // containers
-import Form from './Form'
+// import MailForm from './MailForm'
 
 const Home = props => (
   <div className="Home page">
@@ -10,8 +10,6 @@ const Home = props => (
       home... home... home... home... home... home...
       home... home... home...
     </p>
-    <hr/>
-    <Form />
   </div>
 )
 

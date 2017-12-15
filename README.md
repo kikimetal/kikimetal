@@ -35,6 +35,6 @@
 
 - [x] **Redux**
   - [x] react-router-redux
-  - [ ] redux-form
+  <!-- - [ ] redux-form -->
 
 - [ ] **google charts 試す**

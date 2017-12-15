@@ -2,9 +2,13 @@ import React from "react"
 import Helmet from "react-helmet"
 import { connect } from "react-redux"
 
-// 引数の path :string が 存在する route か確認。
-// 存在すれば path を、しなければ ルートの情報 を返す。
+// components
+import ScrollToTopOnMount from "../components/ScrollToTopOnMount"
+
+// グローバルオブジェクトにセットされてるルーティング情報を取得
 const ROUTES = window.__ROUTES__
+// 存在すれば path を、しなければ ルートの情報 を返す。
+// 引数の path が 存在するか確認。
 const checkRoute = path => {
   const route = Object.keys(ROUTES).find(route => route === path) || false
   return route ? ROUTES[route] : ROUTES["/"]
@@ -22,17 +26,6 @@ const MyHelmet = ({ currentPath }) => {
       </Helmet>
     </div>
   )
-}
-
-class ScrollToTopOnMount extends React.Component {
-  componentDidUpdate(prevProps) {
-    // Y方向を 0にすると、iOS系のブラウザでURL入力欄が大きくなる
-    // 1 にすることでそれを防げる
-    window.scrollTo(0, 1)
-  }
-  render() {
-    return null
-  }
 }
 
 const mapStateToProps = state => ({ currentPath: state.router.location.pathname })

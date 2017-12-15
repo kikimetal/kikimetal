@@ -10,12 +10,10 @@ import { createBrowserHistory } from "history"
 const history = createBrowserHistory()
 const middleware = routerMiddleware(history)
 import reducers from "./modules/reducers"
-import { reducer as formReducer } from 'redux-form'
 const store = createStore(
   combineReducers({
     ...reducers,
     router: routerReducer,
-    form: formReducer
   }),
   applyMiddleware(middleware)
 )
