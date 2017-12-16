@@ -8,6 +8,12 @@ const action = {
       type: "SELECT_ITEM",
       item: item,
     }
-  }
+  },
+  showTrigger: {
+    type: "SHOW"
+  },
+  hideTrigger: {
+    type: "HIDE"
+  },
 }
 export default action

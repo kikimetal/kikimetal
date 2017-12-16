@@ -4,6 +4,7 @@ export const initialState = {
     age: 21,
   },
   selectedItem: null,
+  isShowTrigger: true,
 }
 
 const kiki = (kiki = initialState.kiki, action) => {
@@ -42,9 +43,21 @@ const selectedItem = (state = initialState.selectedItem, action) => {
   }
 }
 
+const isShowTrigger = (state = initialState.isShowTrigger, action) => {
+  switch (action.type) {
+    case "SHOW":
+      return true
+    case "HIDE":
+      return false
+    default:
+      return state
+  }
+}
+
 export const reducers = {
   kiki,
   selectedItem,
+  isShowTrigger,
 }
 
 export default reducers

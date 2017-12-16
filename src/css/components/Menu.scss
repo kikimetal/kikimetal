@@ -1,17 +1,14 @@
-.Nav{
+.Menu{
   display: flex;
   flex-flow: column wrap;
   justify-content: space-around;
   align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
   padding: 1em 0;
-  height: 120px;
-  background: rgb(203, 249, 255);
-  color: #000;
-  z-index: 999;
+  width: 100%;
+  height: 100%;
+  @media screen and (min-width: 768px){
+    align-items: flex-start;
+  }
 
   .Btn{
     transition: 0.3s ease;

@@ -3,7 +3,7 @@ import Helmet from "react-helmet"
 import { connect } from "react-redux"
 
 // components
-import ScrollToTopOnMount from "../components/ScrollToTopOnMount"
+// import ScrollToTopOnMount from "../components/ScrollToTopOnMount"
 
 // グローバルオブジェクトにセットされてるルーティング情報を取得
 const ROUTES = window.__ROUTES__
@@ -17,8 +17,8 @@ const checkRoute = path => {
 const MyHelmet = ({ currentPath }) => {
   const route = checkRoute(currentPath)
   return (
-    <div>
-      <ScrollToTopOnMount />
+    <div className="MyHelmet">
+      {/*<ScrollToTopOnMount />*/}
       <Helmet>
         <title>{route.title}</title>
         <meta name="description" content={route.description} />
