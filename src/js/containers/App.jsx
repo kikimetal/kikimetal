@@ -1,6 +1,8 @@
 import React from "react"
 import { BrowserRouter, Link, Route, Switch } from "react-router-dom"
 import { connect } from "react-redux"
+// router switch transition
+import { spring, AnimatedSwitch } from "react-router-transition"
 // scroll animation
 import { animateScroll } from "react-scroll"
 // onSwipe onTap
@@ -18,76 +20,96 @@ import Btn from "../components/Btn"
 import KikiStar from "../components/KikiStar"
 import Menu from "../components/Menu"
 
-// transition
-import { spring, AnimatedSwitch } from "react-router-transition"
-// we need to map the `scale` prop we define below
-// to the transform style property
-function mapStyles(styles) {
-  return {
-    opacity: styles.opacity,
-    transform: `scale(${styles.scale})`,
-  };
-}
-
-// spring config 全ての値は数値(int)
-// val: 到達する値
-// stiffness: バネを引く強さ -> 高いほどスピードアップ
-// damping: 抵抗力 -> 高いほどバウンドせず、強さに抗う -> スピードダウン
-
-// custom spring creator
+// react-router-transition setting
+/**
+ * custom spring creator
+ * 全ての値は数値(int)
+ * val: 到達する値
+ * stiffness: バネを引く強さ -> 高いほどスピードアップ
+ * damping: 抵抗力 -> 高いほどバウンドせず、強さに抗う -> スピードダウン
+ */
 function bounce(val, override = {}) {
   return spring(val, {
     stiffness: 190,
     damping: 15,
     ...override,
-  });
+  })
 }
-const bounceTransition = {
+// switchRoute animation
+const bounceTransitionBase = {
   // start in a transparent, upscaled state
   atEnter: {
     opacity: 0,
     scale: 1.2,
+    translateY: 0,
   },
   // leave in a transparent, downscaled state
   atLeave: {
     opacity: bounce(0, {stiffness: 97, damping: 34}),
     scale: bounce(0.8, {stiffness: 97, damping: 34}),
+    translateY: 0,
   },
   // and rest at an opaque, normally-scaled state
   atActive: {
     opacity: bounce(1),
     scale: bounce(1),
+    translateY: 0,
   },
-};
+}
+const bounceTransitionSm = {
+  atEnter: {
+    opacity: 0,
+    scale: 1,
+    translateY: 48,
+  },
+  atLeave: {
+    // opacity: bounce(0, {stiffness: 300, damping: 30}),
+    // scale: 1,
+    // translateY: 0,
+  },
+  atActive: {
+    opacity: bounce(1, {stiffness: 112, damping: 22}),
+    scale: 1,
+    translateY: bounce(0, {stiffness: 112, damping: 22}),
+  },
+}
+const bounceTransitionMd = bounceTransitionBase
+const bounceTransitionLg = bounceTransitionMd
+
+// we need to map the `scale` prop we define below // to the transform style property
+function mapStyles(styles) {
+  if (styles.scale && styles.translateY) {
+    return {
+      opacity: styles.opacity,
+      transform: `scale(${styles.scale}) translateY(${styles.translateY}px)`,
+    }
+  }
+  if (styles.scale) {
+    return {
+      opacity: styles.opacity,
+      transform: `scale(${styles.scale})`,
+    }
+  }
+  if (styles.translateY) {
+    return {
+      opacity: styles.opacity,
+      transform: `translateY(${styles.translateY}px)`,
+    }
+  }
+}
 
 class App extends React.Component{
   constructor(props) {
     super(props)
+    this.props.setScreenWidth(window.innerWidth)
     this.toTop = this.toTop.bind(this)
-    this.height100control = this.height100control.bind(this)
   }
 
   componentDidMount(){
-    // this.height100control(true)
     this.props.setScreenWidth(window.innerWidth)
     window.addEventListener("resize", () => {
-      // this.height100control()
       this.props.setScreenWidth(window.innerWidth)
     })
-  }
-
-  height100control(initial = false){
-    const h = window.innerHeight + "px"
-    let height100elements = document.getElementsByClassName("height100")
-    height100elements = Array.from(height100elements)
-    height100elements.forEach(elem => {
-      elem.style.height = h
-    })
-    if (initial) {
-      height100elements.forEach(elem => {
-        elem.style.transition = "0.3s ease"
-      })
-    }
   }
 
   toTop(){
@@ -98,6 +120,11 @@ class App extends React.Component{
   }
 
   render(){
+
+    const bounceTransition = this.props.isScreenWidth.sm
+      ? bounceTransitionSm
+      : bounceTransitionMd
+
     return (
       <div className="App">
         <MyHelmet />
@@ -163,3 +190,18 @@ const mapStateToDispatch = dispatch => ({
   hideTrigger: () => dispatch(action.hideTrigger),
 })
 export default connect(mapStateToProps, mapStateToDispatch)(App)
+
+// TODO:backup code いらないなら消す
+// height100control(initial = false){
+//   const h = window.innerHeight + "px"
+//   let height100elements = document.getElementsByClassName("height100")
+//   height100elements = Array.from(height100elements)
+//   height100elements.forEach(elem => {
+//     elem.style.height = h
+//   })
+//   if (initial) {
+//     height100elements.forEach(elem => {
+//       elem.style.transition = "0.3s ease"
+//     })
+//   }
+// }
