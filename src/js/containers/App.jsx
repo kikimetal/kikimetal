@@ -60,7 +60,7 @@ const bounceTransitionSm = {
   atEnter: {
     opacity: 0,
     scale: 1,
-    translateY: 48,
+    translateY: 36,
   },
   atLeave: {
     // opacity: bounce(0, {stiffness: 300, damping: 30}),
@@ -131,7 +131,7 @@ class App extends React.Component{
 
         <main className="main height100">
           <nav className="nav">
-            <Menu />
+            <Menu mobile={this.props.isScreenWidth.sm} />
           </nav>
           <AnimatedSwitch
             atEnter={bounceTransition.atEnter}
