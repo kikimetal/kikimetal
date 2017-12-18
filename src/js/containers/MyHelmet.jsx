@@ -3,7 +3,7 @@ import Helmet from "react-helmet"
 import { connect } from "react-redux"
 
 // components
-// import ScrollToTopOnMount from "../components/ScrollToTopOnMount"
+import ScrollToTopOnMount from "../components/ScrollToTopOnMount"
 
 // グローバルオブジェクトにセットされてるルーティング情報を取得
 const ROUTES = window.__ROUTES__
@@ -14,19 +14,23 @@ const checkRoute = path => {
   return route ? ROUTES[route] : ROUTES["/"]
 }
 
-const MyHelmet = ({ currentPath }) => {
-  const route = checkRoute(currentPath)
+const MyHelmet = ({ currentPath, isScreenWidth }) => {
+  const thisRoute = checkRoute(currentPath)
   return (
     <div className="MyHelmet">
-      {/*<ScrollToTopOnMount />*/}
+
+      {isScreenWidth.sm && <ScrollToTopOnMount />}
       <Helmet>
-        <title>{route.title}</title>
-        <meta name="description" content={route.description} />
-        <link rel="canonical" href={route.canonical} />
+        <title>{thisRoute.title}</title>
+        <meta name="description" content={thisRoute.description} />
+        <link rel="canonical" href={thisRoute.canonical} />
       </Helmet>
     </div>
   )
 }
 
-const mapStateToProps = state => ({ currentPath: state.router.location.pathname })
+const mapStateToProps = state => ({
+  currentPath: state.router.location.pathname,
+  isScreenWidth : state.isScreenWidth,
+})
 export default connect(mapStateToProps)(MyHelmet)

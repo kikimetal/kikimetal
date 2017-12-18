@@ -15,5 +15,11 @@ const action = {
   hideTrigger: {
     type: "HIDE"
   },
+  setScreenWidth: (width) => {
+    return {
+      type: "SET",
+      width: width,
+    }
+  },
 }
 export default action

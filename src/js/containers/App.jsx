@@ -3,6 +3,8 @@ import { BrowserRouter, Link, Route, Switch } from "react-router-dom"
 import { connect } from "react-redux"
 // scroll animation
 import { animateScroll } from "react-scroll"
+// onSwipe onTap
+import ReactTouchEvents from "react-touch-events"
 
 // containers
 import MyHelmet from "./MyHelmet"
@@ -61,46 +63,47 @@ const bounceTransition = {
 class App extends React.Component{
   constructor(props) {
     super(props)
-    this.setPosition = this.setPosition.bind(this)
     this.toTop = this.toTop.bind(this)
+    this.height100control = this.height100control.bind(this)
   }
+
+  componentDidMount(){
+    // this.height100control(true)
+    this.props.setScreenWidth(window.innerWidth)
+    window.addEventListener("resize", () => {
+      // this.height100control()
+      this.props.setScreenWidth(window.innerWidth)
+    })
+  }
+
+  height100control(initial = false){
+    const h = window.innerHeight + "px"
+    let height100elements = document.getElementsByClassName("height100")
+    height100elements = Array.from(height100elements)
+    height100elements.forEach(elem => {
+      elem.style.height = h
+    })
+    if (initial) {
+      height100elements.forEach(elem => {
+        elem.style.transition = "0.3s ease"
+      })
+    }
+  }
+
   toTop(){
-    // console.log(window.pageYOffset)
     animateScroll.scrollToTop({
       duration: window.pageYOffset / 2.6,
       smooth: "ease",
     })
-    this.props.showTrigger()
   }
-  setPosition(){
-    if (window.innerHeight === window.pageYOffset) return
-    const pos = window.innerWidth >= 768 ? 300 : window.innerHeight
-    animateScroll.scrollTo(pos, {
-      duration: Math.abs(window.innerHeight - window.pageYOffset) + 50,
-      smooth: "ease",
-    })
-    this.props.hideTrigger()
-  }
+
   render(){
     return (
       <div className="App">
         <MyHelmet />
-        <header
-          onMouseEnter={this.props.showTrigger}
-          onTouchStart={this.props.showTrigger}
-          >
-          <h1><KikiStar spin={true}/></h1>
-          <h1>Welcome kikimetal.com</h1>
-          <p>This is HEADER.</p>
-          <h2>please scroll down.</h2>
-        </header>
 
-        <main
-          onScroll={this.setPosition}
-          onMouseEnter={this.setPosition}
-          onTouchStart={this.setPosition}
-          >
-          <nav>
+        <main className="main height100">
+          <nav className="nav">
             <Menu />
           </nav>
           <AnimatedSwitch
@@ -116,40 +119,46 @@ class App extends React.Component{
             <Route component={NotFound} />
           </AnimatedSwitch>
 
-          <div
-            className={`trigger ${this.props.isShowTrigger ? "show" : "hide"}`}
-            onMouseEnter={this.setPosition}
-            onTouchStart={this.setPosition}
-            onTouchMove={this.setPosition}
-            onClick={this.setPosition}
-            >
-            {/*<h1>Click / Touch Me!</h1>*/}
-          </div>
-
         </main>
-
-        <footer
-          onMouseEnter={this.props.showTrigger}
-          onTouchStart={this.props.showTrigger}
-          >
-          <Btn onClick={this.toTop}>^^^ TOP ^^^</Btn>
-          <br/>
-          <small>Powered by KIKIMETAL.</small>
-        </footer>
       </div>
     )
   }
 }
 
+const Footer = () => (
+  <footer className="footer">
+    <Btn onClick={this.toTop}>^^^ TOP ^^^</Btn>
+    <br/>
+    <small>Powered by KIKIMETAL.</small>
+  </footer>
+)
+
+const Header = () => (
+  <div>
+    <h1><KikiStar spin={true}/></h1>
+    <h1>Welcome kikimetal.com</h1>
+    <p>This is HEADER.</p>
+    <h2>please scroll down.</h2>
+
+    <Switch>
+      <Route exact path="/" render={() => <h1>Home</h1>} />
+      <Route exact path="/about" render={() => <h1>About</h1>} />
+      <Route path="/products" render={() => <h1>Products</h1>} />
+    </Switch>
+  </div>
+)
+
 import action from "../modules/action"
 
 // const mapStateToProps = state => state // <- OK (router が入っているから)
 const mapStateToProps = state => ({
+  isScreenWidth: state.isScreenWidth,
   isShowTrigger: state.isShowTrigger,
   router: state.router, // <- 必須
   // ここで router を読み込まないと、react-router-transition が動作しない。
 })
 const mapStateToDispatch = dispatch => ({
+  setScreenWidth: (width) => dispatch(action.setScreenWidth(width)),
   showTrigger: () => dispatch(action.showTrigger),
   hideTrigger: () => dispatch(action.hideTrigger),
 })

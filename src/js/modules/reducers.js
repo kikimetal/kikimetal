@@ -5,6 +5,11 @@ export const initialState = {
   },
   selectedItem: null,
   isShowTrigger: true,
+  isScreenWidth: {
+    sm: true,
+    md: false,
+    lg: false,
+  },
 }
 
 const kiki = (kiki = initialState.kiki, action) => {
@@ -54,10 +59,46 @@ const isShowTrigger = (state = initialState.isShowTrigger, action) => {
   }
 }
 
+const isScreenWidth = (state = initialState.isScreenWidth, action) => {
+  const base = {
+    sm: false,
+    md: false,
+    lg: false,
+  }
+  switch (action.type) {
+    case "SET":
+      if (action.width >= 1240){
+        // 変更がない場合は break で抜けて state を返さないと、
+        // ブレークポイントまたいでないのに redux から レンダー命令が出ちゃう
+        if (state.lg) break
+        return {
+          ...base,
+          lg: true,
+        }
+      }else if (action.width >= 768){
+        if (state.md) break
+        return {
+          ...base,
+          md: true,
+        }
+      }else{
+        if (state.sm) break
+        return {
+          ...base,
+          sm: true,
+        }
+      }
+    default:
+      return state
+  }
+  return state
+}
+
 export const reducers = {
   kiki,
   selectedItem,
   isShowTrigger,
+  isScreenWidth,
 }
 
 export default reducers
