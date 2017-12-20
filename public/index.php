@@ -33,9 +33,6 @@ $assets = get_assets_path();
   <!-- apple-web-app -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <!-- stylesheet -->
-  <link href="https://fonts.googleapis.com/css?family=Bungee+Hairline|Codystar:300,400|Fascinate|Fredericka+the+Great|Libre+Barcode+128+Text|Londrina+Outline" rel="stylesheet">
-  <link rel="stylesheet" href="<?= $assets ?>/css/bundle.css">
   <!-- react-helmet context meta -->
   <title><? $route["title"] ?></title>
   <meta name="description" content="<?= $route["description"] ?>" data-react-helmet="true" />
@@ -43,10 +40,36 @@ $assets = get_assets_path();
 </head>
 <body>
 
+  <!-- <script>
+    window.onload = function(){
+      document.getElementById("loader").style.display = "none";
+    }
+  </script>
+  <style media="screen">
+    #loader{
+      display: flex;
+      flex-flow: column;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      font-size: 30px;
+      color: grey;
+    }
+  </style>
+  <div id="loader">loading</div> -->
+
+  <div id="app"></div>
+
+  <!-- stylesheet -->
+  <link href="https://fonts.googleapis.com/css?family=Bungee+Hairline|Codystar:300,400|Fascinate|Fredericka+the+Great|Libre+Barcode+128+Text|Londrina+Outline" rel="stylesheet">
+  <link rel="stylesheet" href="<?= $assets ?>/css/bundle.css">
   <script>
     window.__ROUTES__ = <?= $routes ?>;
   </script>
-  <div id="app"></div>
   <script src="<?= $assets ?>/vender/fontawesome-all.min.js" charset="utf-8"></script>
   <script src="<?= $assets ?>/js/bundle.js" charset="utf-8"></script>
 

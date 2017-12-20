@@ -4,6 +4,7 @@ import { connect } from "react-redux"
 // components
 import Btn from '../components/Btn'
 import NotFound from '../components/NotFound'
+import LazyLoadImg from '../components/LazyLoadImg'
 // modules
 import action from "../modules/action"
 
@@ -15,7 +16,7 @@ const WebSite = (props) => (
     <Site
       date="2016 11"
       title="香水ブランドサイト"
-      image="garment_v1.jpg"
+      image="garment_v1.png"
       url="http://kikimetal.com/portfolio/garment/v1/"
       />
 
@@ -38,12 +39,6 @@ const WebSite = (props) => (
       title="コーポレートサイト"
       image="cvl.png"
       url="http://www.carvancl.co.jp"
-      />
-
-    <Site
-      date="2017 08"
-      title="交換留学のメディアサイト"
-      url="http://koukanryugaku.com"
       />
 
     <Site
@@ -76,10 +71,7 @@ const Site = ({ date, title, image, url, children }) => (
       </div>
       <div className="flex-item">
         <a href={url}>
-          <img
-          className="image"
-          src={image ? "/assets/img/website/" + image : "/assets/img/kiki-star/square-centering.svg"}
-          />
+          <LazyLoadImg imgsrc={image ? "/assets/img/website/" + image : "/assets/img/kiki-star/square-centering.svg"} />
         </a>
       </div>
     </div>

@@ -1,14 +1,9 @@
 .WebSite{
-  color: #036;
-  background: #fff;
+
+  background: rgba(0, 0, 0, 0.3);
 
   p{
     text-align: center;
-  }
-  .image{
-    width: 100%;
-    // padding-bottom: 60%;
-    // background: red;
   }
   .Btn{
     margin: 1em auto;
@@ -16,6 +11,11 @@
 
   .Site{
     margin-bottom: 100px;
+    background: #fff;
+    overflow: hidden;
+    img{
+      display: block;
+    }
   }
 
   @media screen and (min-width: 768px){

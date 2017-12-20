@@ -1,0 +1,32 @@
+.LazyLoadImg{
+  position: relative;
+
+  img{
+    width: 100%;
+    height: auto;
+  }
+
+  .placeholder{
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    // background: #fafafa;
+    background: #fff;
+    color: #444;
+    font-size: 20px;
+    font-weight: lighter;
+    transition: 0.4s ease;
+
+    &.hide{
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+}
