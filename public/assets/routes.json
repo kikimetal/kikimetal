@@ -7,12 +7,12 @@
   "/graffiti": {
     "title": "Graffiti",
     "description": "meta description of Graffiti.",
-    "canonical": "https://www.kikimetal.com/about"
+    "canonical": "https://www.kikimetal.com/graffiti"
   },
   "/website": {
     "title": "WebSite",
     "description": "meta description of WebSite.",
-    "canonical": "https://www.kikimetal.com/about"
+    "canonical": "https://www.kikimetal.com/website"
   },
   "/products": {
     "title": "Products",
