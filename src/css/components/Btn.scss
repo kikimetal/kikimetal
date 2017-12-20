@@ -2,16 +2,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.4em calc(0.5em + 2vw);
-  color: white;
+  padding: 0.8em calc(1em + 2vw);
   background: var(--kiki-pink);
-  // background: #fff;
+  color: white;
   border: 1px solid var(--kiki-pink);
   border-radius: 4px;
   font-size: 1.2em;
-  // box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
   text-decoration: none;
   cursor: pointer;
-  width: 200px;
-  height: 90px;
+
+  transition: 0.3s ease;
+
+  &:hover{
+    background: #fff;
+    color: var(--kiki-pink);
+  }
 }

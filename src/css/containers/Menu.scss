@@ -32,6 +32,8 @@
 
     .Btn{
       margin: 1px;
+      width: 200px;
+      height: 66px;
     }
 
     .switch{
@@ -99,28 +101,26 @@
 
   &.md{
 
-    top: 0;
-    left: auto;
-    right: 0;
+    top: 2px;
+    left: 0;
+    right: 1px;
     bottom: auto;
 
     .container{
-      width: var(--Menu-width);
-      // border-left: 1px solid var(--kiki-pink);
+      width: 100%;
+      height: auto;
 
       display: flex;
-      flex-flow: column wrap;
-      justify-content: center;
+      flex-flow: row wrap;
+      justify-content: flex-end;
       align-items: center;
       font-size: 1.2rem;
     }
 
     .link-list{
-      width: 100%;
-      overflow: hidden;
+
       &-item{
-        width: 90%;
-        margin: 1px auto;
+        margin: 0 1px;
         // border-bottom: 1px solid var(--kiki-pink);
         &:first-child{
           // border-top: 1px solid var(--kiki-pink);
@@ -128,10 +128,8 @@
       }
       .Btn{
         width: 100%;
-        // height: var(--Menu-width);
-        height: 70px;
-        border-radius: 35px;
-        // border-top: 1px solid white;
+        // height: 66px;
+        // border-radius: 33px;
       }
     }
   }

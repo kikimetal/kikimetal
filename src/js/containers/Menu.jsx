@@ -45,7 +45,7 @@ class Menu extends React.Component{
     } else {
       return (
         <div className="Menu md">
-          <div className="container height100">
+          <div className="container">
             <ul className="link-list">
               <li className="link-list-item"><NavLink exact to="/"><Btn><i className="fas fa-bug" />Home</Btn></NavLink></li>
               <li className="link-list-item"><NavLink exact to="/graffiti"><Btn><i className="fab fa-accusoft" />Graffiti</Btn></NavLink></li>
