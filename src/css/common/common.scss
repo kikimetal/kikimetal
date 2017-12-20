@@ -1,6 +1,7 @@
 /* common */
 @charset "UTF-8";
 @import "myreset";
+
 @font-face {
   font-family: "RictyDiminished-Regular";
   src: url("/assets/font/RictyDiminished-Regular.ttf") format(”truetype”);
@@ -8,13 +9,28 @@
 *{
   box-sizing: border-box;
 }
-body{
-  font-family: "RictyDiminished-Regular", monospace;
-  color: #555;
-  text-align: center;
+html{
+  body{
+    // <!-- font
+    //   font-family: 'Bungee Hairline', cursive;
+    //   font-family: 'Codystar', cursive;
+    //   font-family: 'Fascinate', cursive;
+    //   font-family: 'Fredericka the Great', cursive;
+    //   font-family: 'Libre Barcode 128 Text', cursive;
+    //   font-family: 'Londrina Outline', cursive;
+    //  -->
+    // font-family: "Londrina Outline", "RictyDiminished-Regular", monospace;
+    font-family: "Fredericka the Great", "RictyDiminished-Regular", monospace;
+    color: #555;
+    text-align: center;
+  }
+}
+p{
+  line-height: 2;
 }
 h1, h2, p{
-  padding: 0.4em 0;
+  // padding: 0.4em 0;
+  line-height: 2;
 }
 .success{
   color: turquoise;

@@ -1,9 +1,11 @@
 import React from 'react'
 
 const NotFound = () => (
-  <div>
-    <h2>err status: 404</h2>
-    <h1>URLをチェックしてみてね</h1>
+  <div className="NotFound page">
+    <section>
+      <h1>Page Not Found</h1>
+      <p>存在しないURLです。ご確認ください。</p>
+    </section>
   </div>
 )
 

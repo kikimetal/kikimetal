@@ -1,0 +1,125 @@
+.App{
+
+  --Menu-width: 210px;
+  --kiki-pink: rgb(149, 213, 205);
+  --kiki-orange: rgb(255, 162, 75);
+
+  .height100{
+    transition: 0.3s ease;
+  }
+
+  .bg{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* height: [js] window.innerHeight */
+
+    background-image: url("/assets/img/mohu-pc.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    // background-image:
+    //   linear-gradient(#fff, rgba(255, 255, 255, 0.5)),
+    //   url("/assets/img/kiki-star/oblong.svg"),
+    //   linear-gradient(90deg, var(--kiki-pink), #fff);
+    // background-repeat: no-repeat;
+    // background-position: 0 0, -5px 0, 0 0;
+    // background-size: contain;
+    // background-blend-mode: soft-light;
+
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  // ******************** sm: mobile layout ********************
+
+  .Header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: left;
+    padding: 0.55em;
+    font-size: 36px;
+    pointer-events: none;
+    z-index: 99;
+  }
+
+  main.main{
+    position: relative;
+    /* height: [js] window.innerHeight */
+
+    .animated-switch-wrapper {
+      position: relative;
+      height: 100%;
+
+      & > div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+
+      .page{
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
+        align-items: center;
+        padding: 2vw;
+        width: 100%;
+        min-height: 100%;
+
+        .page-title{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 300px;
+        }
+
+        section{
+          width: 100%;
+          color: dimgrey;
+          border-radius: 4px;
+          h1{
+            font-weight: bold;
+            border-bottom: 1px solid lightgrey;
+          }
+          p{
+            line-height: 2;
+          }
+        }
+      }
+
+    }
+  }
+
+  // ******************** md middle size layout ********************
+  @media screen and (min-width: 768px){
+
+    main.main{
+
+      .animated-switch-wrapper {
+        position: absolute;
+        top: 0;
+        // right: 0;
+        left: 0;
+        // width: calc(100% - var(--Menu-width));
+        width: 100%;
+
+        & > div{
+          -webkit-overflow-scrolling: touch;
+          height: 100%;
+          overflow-y: scroll;
+        }
+
+        // .page{
+        //   padding-left: 8vw;
+        // }
+      }
+    }
+  }
+}

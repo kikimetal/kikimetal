@@ -1,9 +1,9 @@
 import React from 'react'
 
 const Btn = ({ children, label, ...props }) => (
-  <button className="Btn" {...props}>
+  <span className="Btn" {...props}>
     {children || label}
-  </button>
+  </span>
 )
 Btn.defaultProps = {
   label: "button",

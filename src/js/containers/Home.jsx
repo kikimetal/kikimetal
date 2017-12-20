@@ -1,15 +1,19 @@
 import React from "react"
 import { connect } from "react-redux"
-// containers
-// import MailForm from './MailForm'
+
+// components
+import KikiStar from "../components/KikiStar"
 
 const Home = props => (
   <div className="Home page">
-    <h1>Home</h1>
+
+    <h1>Welcome kikimetal.com</h1>
+    <p>ようこそ！</p>
     <p>
-      home... home... home... home... home... home...
-      home... home... home...
+      ここはききめたるの遊び場とか...<br/>
+      ポートフォリオっぽい何かです。
     </p>
+
   </div>
 )
 

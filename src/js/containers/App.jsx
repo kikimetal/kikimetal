@@ -11,14 +11,14 @@ import ReactTouchEvents from "react-touch-events"
 // containers
 import MyHelmet from "./MyHelmet"
 import Home from "./Home"
-import About from "./About"
-import Products from "./Products"
+import Graffiti from "./Graffiti"
+import WebSite from "./WebSite"
+import Menu from "./Menu"
 
 // components
 import NotFound from "../components/NotFound"
 import Btn from "../components/Btn"
 import KikiStar from "../components/KikiStar"
-import Menu from "../components/Menu"
 
 // react-router-transition setting
 /**
@@ -46,13 +46,14 @@ const bounceTransitionBase = {
   // leave in a transparent, downscaled state
   atLeave: {
     opacity: bounce(0, {stiffness: 97, damping: 34}),
-    scale: bounce(0.8, {stiffness: 97, damping: 34}),
+    // scale: bounce(0.8, {stiffness: 97, damping: 34}),
+    scale: 1,
     translateY: 0,
   },
   // and rest at an opaque, normally-scaled state
   atActive: {
     opacity: bounce(1),
-    scale: bounce(1),
+    scale: bounce(1, {stiffness: 210, damping: 33}),
     translateY: 0,
   },
 }
@@ -68,9 +69,9 @@ const bounceTransitionSm = {
     // translateY: 0,
   },
   atActive: {
-    opacity: bounce(1, {stiffness: 112, damping: 22}),
+    opacity: bounce(1, {stiffness: 102, damping: 25}),
     scale: 1,
-    translateY: bounce(0, {stiffness: 112, damping: 22}),
+    translateY: bounce(0, {stiffness: 132, damping: 22}),
   },
 }
 const bounceTransitionMd = bounceTransitionBase
@@ -106,10 +107,23 @@ class App extends React.Component{
   }
 
   componentDidMount(){
-    this.props.setScreenWidth(window.innerWidth)
+    this.handleResize()
     window.addEventListener("resize", () => {
-      this.props.setScreenWidth(window.innerWidth)
+      this.handleResize()
     })
+  }
+
+  handleResize(){
+    this.props.setScreenWidth(window.innerWidth)
+    /* set style height100 class elements */
+    setHeight100elements()
+    function setHeight100elements(){
+      let height100elements = document.getElementsByClassName("height100")
+      height100elements = Array.from(height100elements)
+      height100elements.forEach(elem => {
+        elem.style.height = window.innerHeight + "px"
+      })
+    }
   }
 
   toTop(){
@@ -125,28 +139,33 @@ class App extends React.Component{
       ? bounceTransitionSm
       : bounceTransitionMd
 
+    // TODO: middleサイズ以上の画面height の設定を css 変更
+    // 100vh -> 100% になるように。
+
     return (
       <div className="App">
         <MyHelmet />
+        <div className="bg height100"></div>
 
         <main className="main height100">
-          <nav className="nav">
-            <Menu mobile={this.props.isScreenWidth.sm} />
+          <nav>
+            <Menu/>
           </nav>
+          {/*<Header />*/}
           <AnimatedSwitch
             atEnter={bounceTransition.atEnter}
             atLeave={bounceTransition.atLeave}
             atActive={bounceTransition.atActive}
             mapStyles={mapStyles}
-            className="animated-switch-wrapper"
+            className={`animated-switch-wrapper ${!this.props.isScreenWidth.sm && "fix-height"}`}
             >
             <Route exact path="/" component={Home} />
-            <Route exact path="/about" component={About} />
-            <Route path="/products" component={Products} />
+            <Route exact path="/graffiti" component={Graffiti} />
+            <Route path="/website" component={WebSite} />
             <Route component={NotFound} />
           </AnimatedSwitch>
-
         </main>
+
       </div>
     )
   }
@@ -154,23 +173,17 @@ class App extends React.Component{
 
 const Footer = () => (
   <footer className="footer">
-    <Btn onClick={this.toTop}>^^^ TOP ^^^</Btn>
-    <br/>
     <small>Powered by KIKIMETAL.</small>
   </footer>
 )
 
 const Header = () => (
-  <div>
-    <h1><KikiStar spin={true}/></h1>
-    <h1>Welcome kikimetal.com</h1>
-    <p>This is HEADER.</p>
-    <h2>please scroll down.</h2>
-
+  <div className="Header">
+    <KikiStar spin={false} opacity={0.6}/>
     <Switch>
-      <Route exact path="/" render={() => <h1>Home</h1>} />
-      <Route exact path="/about" render={() => <h1>About</h1>} />
-      <Route path="/products" render={() => <h1>Products</h1>} />
+      <Route exact path="/" render={() => <span>Home</span>} />
+      <Route exact path="/graffiti" render={() => <span>Graffiti</span>} />
+      <Route path="/website" render={() => <span>WebSite</span>} />
     </Switch>
   </div>
 )
@@ -190,18 +203,3 @@ const mapStateToDispatch = dispatch => ({
   hideTrigger: () => dispatch(action.hideTrigger),
 })
 export default connect(mapStateToProps, mapStateToDispatch)(App)
-
-// TODO:backup code いらないなら消す
-// height100control(initial = false){
-//   const h = window.innerHeight + "px"
-//   let height100elements = document.getElementsByClassName("height100")
-//   height100elements = Array.from(height100elements)
-//   height100elements.forEach(elem => {
-//     elem.style.height = h
-//   })
-//   if (initial) {
-//     height100elements.forEach(elem => {
-//       elem.style.transition = "0.3s ease"
-//     })
-//   }
-// }

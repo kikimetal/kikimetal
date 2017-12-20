@@ -1,0 +1,40 @@
+.WebSite{
+  color: #036;
+  background: #fff;
+
+  p{
+    text-align: center;
+  }
+  .image{
+    width: 100%;
+    // padding-bottom: 60%;
+    // background: red;
+  }
+  .Btn{
+    margin: 1em auto;
+  }
+
+  .Site{
+    margin-bottom: 100px;
+  }
+
+  @media screen and (min-width: 768px){
+    .Site{
+      .flex{
+        display: flex;
+        flex-flow: row;
+        justify-content: center;
+        align-items: center;
+        & > div{
+          width: 50%;
+        }
+      }
+
+      &:nth-child(odd){
+        .flex{
+          flex-flow: row-reverse;
+        }
+      }
+    }
+  }
+}

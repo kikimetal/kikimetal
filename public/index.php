@@ -27,14 +27,15 @@ $assets = get_assets_path();
 <html lang="ja">
 <head>
   <meta charset="utf-8">
-  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <link rel="shortcut icon" href="<?= $assets ?>/img/favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="<?= $assets ?>/img/apple-touch-icon-180x180.png">
-  <link rel="stylesheet" href="<?= $assets ?>/css/bundle.css">
   <!-- apple-web-app -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <!-- stylesheet -->
+  <link href="https://fonts.googleapis.com/css?family=Bungee+Hairline|Codystar:300,400|Fascinate|Fredericka+the+Great|Libre+Barcode+128+Text|Londrina+Outline" rel="stylesheet">
+  <link rel="stylesheet" href="<?= $assets ?>/css/bundle.css">
   <!-- react-helmet context meta -->
   <title><? $route["title"] ?></title>
   <meta name="description" content="<?= $route["description"] ?>" data-react-helmet="true" />

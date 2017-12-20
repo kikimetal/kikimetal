@@ -1,7 +1,7 @@
 import React from 'react'
 
-const KikiStar = ({ spin }) => (
-  <div className={`KikiStar ${spin && "spin"}`}></div>
+const KikiStar = ({ spin, opacity }) => (
+  <div className={`KikiStar ${spin && "spin"}`} style={{opacity}}></div>
 )
 
 export default KikiStar

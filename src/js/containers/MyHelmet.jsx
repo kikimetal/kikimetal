@@ -18,7 +18,6 @@ const MyHelmet = ({ currentPath, isScreenWidth }) => {
   const thisRoute = checkRoute(currentPath)
   return (
     <div className="MyHelmet">
-
       {isScreenWidth.sm && <ScrollToTopOnMount />}
       <Helmet>
         <title>{thisRoute.title}</title>

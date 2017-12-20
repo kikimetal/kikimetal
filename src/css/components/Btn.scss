@@ -1,16 +1,17 @@
 .Btn{
-  display: inline-block;
-  margin: 0.2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 0.4em calc(0.5em + 2vw);
   color: white;
-  background: rgb(88, 209, 213);
-  border-radius: 4px;
+  background: var(--kiki-pink);
+  // background: #fff;
+  border: 1px solid var(--kiki-pink);
+  // border-radius: 4px;
   font-size: 1.2em;
-  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
-  border: none;
-  outline: none;
+  // box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
+  text-decoration: none;
   cursor: pointer;
-  *{
-    text-decoration: none;
-  }
+  width: 200px;
+  height: 90px;
 }

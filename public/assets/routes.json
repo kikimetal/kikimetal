@@ -4,9 +4,14 @@
     "description": "kikimetal(ききめたる)の遊び場です。websiteやイラストがあります。CSSとかJavaScriptとかで遊びます。",
     "canonical": "https://www.kikimetal.com"
   },
-  "/about": {
-    "title": "About",
-    "description": "meta description of About.",
+  "/graffiti": {
+    "title": "Graffiti",
+    "description": "meta description of Graffiti.",
+    "canonical": "https://www.kikimetal.com/about"
+  },
+  "/website": {
+    "title": "WebSite",
+    "description": "meta description of WebSite.",
     "canonical": "https://www.kikimetal.com/about"
   },
   "/products": {

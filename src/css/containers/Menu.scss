@@ -1,0 +1,138 @@
+.Menu{
+  // background: #fff;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: auto;
+  bottom: auto;
+  color: #000;
+  z-index: 999;
+
+  .Btn{
+    transition: 0.3s ease;
+
+    svg.svg-inline--fa{
+      margin: 0 0.3em;
+      margin-left: -0.4em;
+    }
+  }
+
+  a.active .Btn{
+    // react-router -> NavLink で 現在ルートの a に .active が付く。
+    // filter: blur(2px);
+    // transform: scale(1.02);
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &.sm{
+    width: 100%;
+    font-size: 1rem;
+
+    .Btn{
+      margin: 1px;
+    }
+
+    .switch{
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 1;
+      font-size: 38px;
+      color: var(--kiki-pink);
+      padding: 0.5em 0.4em;
+      cursor: pointer;
+    }
+
+    .container{
+      display: flex;
+      flex-flow: column wrap;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: white;
+      transition: 0.5s ease;
+
+      .link-list{
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
+        align-items: center;
+      }
+
+      &.hide{
+        pointer-events: none;
+        visibility: hidden;
+        opacity: 0;
+        transform: scale(1.1);
+        transition: 0.4s ease 0.1s;
+      }
+
+      &.show{
+        .link-list{
+          @for $i from 1 through 6 {
+            &-item:nth-child(#{$i}) {
+              animation: slide-in ease both;
+              animation-duration: $i * 0.4s;
+              animation-delay: $i * 0.04s;
+              @keyframes slide-in{
+                from{
+                  transform: translateY(9px * $i);
+                  opacity: 0;
+                }
+                to{
+                  transform: translateY(0px);
+                  opacity: 1;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.md{
+
+    top: 0;
+    left: auto;
+    right: 0;
+    bottom: auto;
+
+    .container{
+      width: var(--Menu-width);
+      // border-left: 1px solid var(--kiki-pink);
+
+      display: flex;
+      flex-flow: column wrap;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2rem;
+    }
+
+    .link-list{
+      width: 100%;
+      overflow: hidden;
+      &-item{
+        width: 90%;
+        margin: 1px auto;
+        // border-bottom: 1px solid var(--kiki-pink);
+        &:first-child{
+          // border-top: 1px solid var(--kiki-pink);
+        }
+      }
+      .Btn{
+        width: 100%;
+        // height: var(--Menu-width);
+        height: 70px;
+        border-radius: 35px;
+        // border-top: 1px solid white;
+      }
+    }
+  }
+}
