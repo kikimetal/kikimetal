@@ -15,11 +15,18 @@
   }
 
   .Site{
+    font-family: "RictyDiminished-Regular", monospace;
     margin-bottom: 100px;
     background: #fff;
     overflow: hidden;
     img{
       display: block;
+    }
+    h1{
+      font-weight: normal;
+    }
+    .description{
+      padding: 0.7em 1em 0;
     }
   }
 

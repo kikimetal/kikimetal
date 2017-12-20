@@ -90,11 +90,11 @@ const Site = ({ date, title, image, url, skill, period, comment }) => (
   <section className="Site">
     <div className="flex">
       <div className="flex-item">
-        <p><small>{date}</small></p>
         <h1>{title}</h1>
-        <p>
-          ソフト/言語: {skill}<br/>
-          制作期間: {period}
+        <p className="description">
+          制作時期: {date}<br/>
+          制作期間: {period}<br/>
+          言語等: {skill}
           {comment && <br/>}{comment && comment}
         </p>
         <p><a href={url}><Btn>みる</Btn></a></p>
