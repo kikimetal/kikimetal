@@ -38,3 +38,5 @@
   <!-- - [ ] redux-form -->
 
 - [ ] **google charts 試す**
+
+- [ ] **/website 以下のデータを切り離し jsonあたりでいいのかしら？**

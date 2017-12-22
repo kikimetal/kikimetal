@@ -40,28 +40,6 @@ $assets = get_assets_path();
 </head>
 <body>
 
-  <!-- <script>
-    window.onload = function(){
-      document.getElementById("loader").style.display = "none";
-    }
-  </script>
-  <style media="screen">
-    #loader{
-      display: flex;
-      flex-flow: column;
-      justify-content: center;
-      align-items: center;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      font-size: 30px;
-      color: grey;
-    }
-  </style>
-  <div id="loader">loading</div> -->
-
   <div id="app"></div>
 
   <!-- stylesheet -->

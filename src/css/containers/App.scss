@@ -8,32 +8,6 @@
     transition: 0.3s ease;
   }
 
-  .bg{
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    /* height: [js] window.innerHeight */
-
-    background-image: url("/assets/img/mohu-pc.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-
-    // background-image:
-    //   linear-gradient(#fff, rgba(255, 255, 255, 0.5)),
-    //   url("/assets/img/kiki-star/oblong.svg"),
-    //   linear-gradient(90deg, var(--kiki-pink), #fff);
-    // background-repeat: no-repeat;
-    // background-position: 0 0, -5px 0, 0 0;
-    // background-size: contain;
-    // background-blend-mode: soft-light;
-
-    pointer-events: none;
-    z-index: -1;
-  }
-
   // ******************** sm: mobile layout ********************
 
   .Header{
@@ -69,7 +43,7 @@
         flex-flow: column wrap;
         justify-content: center;
         align-items: center;
-        padding: 2vw;
+        padding: 0 2vw;
         width: 100%;
         min-height: 100%;
 
@@ -78,6 +52,12 @@
           justify-content: center;
           align-items: center;
           height: 300px;
+          &.top{
+            padding-top: 60px;
+          }
+          &.bottom{
+            padding-bottom: 20px;
+          }
         }
 
         section{

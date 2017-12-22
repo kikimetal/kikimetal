@@ -8,81 +8,63 @@ import LazyLoadImg from '../components/LazyLoadImg'
 // modules
 import action from "../modules/action"
 
-const WebSite = (props) => (
-  <div className="WebSite page">
+class WebSite extends React.Component{
+  constructor(){
+    super()
+    this.state = {
+      reverse: false,
+    }
+  }
+  render(){
+    return (
+      <div className="WebSite page">
+        <h1 className="page-title top">WebSite</h1>
+        <Btn
+          style={{maxWidth: "300px"}}
+          onClick={() => this.setState({reverse: !this.state.reverse})}
+          >
+          SORT : {this.state.reverse ? "古い順にする" : "新しい順にする"}
+        </Btn>
+        <Sites reverse={this.state.reverse} />
+        <h1 className="page-title bottom">WebSite</h1>
+      </div>
+    )
+  }
+}
 
-    <h1 className="page-title">WebSite</h1>
+function getJSON(url) {
+  var req = new XMLHttpRequest()
 
-    <Site
-      date="2016 11"
-      title="香水ブランドサイト"
-      image="garment_v1.png"
-      url="http://kikimetal.com/portfolio/garment/v1/"
-      skill="HTML, CSS, jQuery, JavaScript"
-      period="2週間"
-      comment="初めてのお仕事。改善点だらけだけど、意外と色褪せてない。"
-      />
+  // XMLHttpRequest オブジェクトの状態が変化した際に呼び出されるイベントハンドラ
+  req.onreadystatechange = function() {
+    if(req.readyState == 4 && req.status == 200){ // サーバーからのレスポンスが完了し、かつ、通信が正常に終了した場合
+      // alert(req.responseText) // 取得した JSON ファイルの中身を表示
+      // return req.responseText
+    }
+  }
+  req.open("GET", url, false)
+  req.send(null)
+  return JSON.parse(req.responseText)
+}
 
-    <Site
-      date="2016 02"
-      title="あそび"
-      image="mohumohu.png"
-      url="http://kikimetal.com/portfolio/mohumohu/"
-      skill="HTML, CSS, jQuery, JavaScript"
-      period="3日"
-      comment="もっと学べばいろんな表現ができそうだと実感した。"
-      />
+// let websites = getJSON(`${window.__ASSETS__}/websites.json`)
+let websites = getJSON(`${location.origin}/assets/websites.json`)
+websites = Object.values(websites) // 値を詰め込んだ配列へ
 
-    <Site
-      date="2017 04"
-      title="協会のサイト"
-      image="b-assoc.png"
-      url="http://www.bulgarian-rose.or.jp"
-      skill="PHP, HTML, CSS, JavaScript, canvas, p5js"
-      period="1ヶ月"
-      comment="ロード時に薔薇を咲かせたかったんや...。"
-      />
-
-    <Site
-      date="2017 05"
-      title="コーポレートサイト"
-      image="cvl.png"
-      url="http://www.carvancl.co.jp"
-      skill="HTML, CSS, SVG, JavaScript"
-      period="1週間"
-      comment="トラックパッドで左手を描く苦行をクリア。"
-      />
-
-    <Site
-      date="2017 09"
-      title="香水のブランドサイト"
-      image="garment_v2.png"
-      url="https://www.takeruyamashita.com"
-      skill="PHP, HTML, CSS, SVG, JavaScript, ES2015, React, Gulp, Babel"
-      period="1ヶ月"
-      comment="SPAのエクスペリエンスに憧れ...。"
-      />
-
-    <Site
-      date="2017 10"
-      title="美容系のECサイト"
-      image="darena-ec.png"
-      url="https://www.rosedarena.com/ec/html/"
-      skill="PHP, HTML, CSS, JavaScript, EC-Cube"
-      period="2週間"
-      comment="Twigテンプレート解読するのは骨が折れた。"
-      />
-
-    <Site
-      date="2017 12"
-      title="www.kikimetal.com"
-      image=""
-      url="https://www.kikimetal.com"
-      skill="PHP, HTML, CSS, JavaScript, ES2015, React, Redux, Gulp, Webpack, Babel"
-      period="1週間"
-      comment="SPAならではのスムーズなページ遷移アニメーションに血眼。"
-      />
-
+const Sites = ({ reverse }) => (
+  <div className={`Sites ${reverse && "reverse"}`}>
+    {websites.map((data) => {
+      return <Site
+        key={data.title}
+        title={data.title}
+        date={data.date}
+        image={data.image}
+        url={data.url}
+        skill={data.skill}
+        period={data.period}
+        comment={data.comment}
+        />
+    })}
   </div>
 )
 

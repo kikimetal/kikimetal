@@ -16,6 +16,7 @@ import WebSite from "./WebSite"
 import Menu from "./Menu"
 
 // components
+import Bg from "../components/Bg"
 import NotFound from "../components/NotFound"
 import Btn from "../components/Btn"
 import KikiStar from "../components/KikiStar"
@@ -145,7 +146,21 @@ class App extends React.Component{
     return (
       <div className="App">
         <MyHelmet />
-        <div className="bg height100"></div>
+
+        {/*<div className="bg height100"></div>*/}
+        {/*<AnimatedSwitch
+          atEnter={bounceTransitionSm.atEnter}
+          atLeave={bounceTransitionSm.atLeave}
+          atActive={bounceTransitionSm.atActive}
+          mapStyles={mapStyles}
+          className={`animated-switch-wrapper ${!this.props.isScreenWidth.sm && "fix-height"}`}
+          >
+          <Route exact path="/" component={() => <Bg scale={1} size="contain" imgsrc="/assets/img/bg.png" />} />
+          <Route exact path="/graffiti" component={() => <Bg scale={1} size="contain" imgsrc="/assets/img/mohu-pc.png" />} />
+          <Route path="/website" component={() => <Bg scale={1} size="contain" imgsrc="/assets/img/mohu-pc.png" />} />
+          <Route component={NotFound} />
+        </AnimatedSwitch>*/}
+        <Bg scale={1} size="contain" imgsrc="/assets/img/mohu-pc.png" />
 
         <main className="main height100">
           <nav>

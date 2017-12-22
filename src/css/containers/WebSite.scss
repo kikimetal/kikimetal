@@ -14,19 +14,42 @@
     width: 80%;
   }
 
-  .Site{
-    font-family: "RictyDiminished-Regular", monospace;
-    margin-bottom: 100px;
-    background: #fff;
-    overflow: hidden;
-    img{
-      display: block;
+  .Sites{
+    display: flex;
+    flex-flow: column;
+
+    .Site{
+      font-family: "RictyDiminished-Regular", monospace;
+      margin-bottom: 100px;
+      background: #fff;
+      overflow: hidden;
+
+      &:last-of-type{
+        margin-bottom: 0;
+      }
+
+      img{
+        display: block;
+      }
+      h1{
+        padding: 1em 0 0.2em;
+        font-weight: normal;
+      }
+      .description{
+        padding: 0.7em 1em 0;
+      }
     }
-    h1{
-      font-weight: normal;
-    }
-    .description{
-      padding: 0.7em 1em 0;
+
+    &.reverse{
+      flex-flow: column-reverse;
+      .Site{
+        &:last-of-type{
+          margin-bottom: 100px;
+        }
+        &:first-of-type{
+          margin-bottom: 0;
+        }
+      }
     }
   }
 
@@ -42,7 +65,7 @@
         }
       }
 
-      &:nth-child(odd){
+      &:nth-of-type(even){
         .flex{
           flex-flow: row-reverse;
         }

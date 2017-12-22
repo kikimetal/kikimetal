@@ -1,15 +1,18 @@
 .Bg{
-  display: inline-block;
-  margin: 0;
-  padding: 0;
-  width: 100px;
-  height: 100px;
-  background: transparent;
-  background-image: url("/assets/img/bg.png");
-  background-position: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* height: [js] window.innerHeight */
+
+  // background-image: url("/assets/img/mohu-pc.png");
   background-repeat: no-repeat;
-  background-size: cover;
-  border-radius: 4px;
-  border: 2px solid crimson;
-  box-sizing: border-box;
+  // background-position: center;
+  // background-size: cover;
+
+  pointer-events: none;
+  z-index: -1;
+
+  transform: scale(1.2);
 }
