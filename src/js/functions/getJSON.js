@@ -13,8 +13,15 @@ function getJSON(url) {
   return JSON.parse(xhr.responseText)
 }
 
-function getArrayFromJSON(url){
+export function getObjectFromJSON(url){
+  return getJSON(url)
+}
+
+export function getArrayFromJSON(url){
   return Object.values(getJSON(url))
 }
 
-export default getArrayFromJSON
+export default {
+  getArrayFromJSON,
+  getObjectFromJSON,
+}

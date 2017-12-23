@@ -1,9 +1,10 @@
 import React from "react"
 import Helmet from "react-helmet"
 import { connect } from "react-redux"
-
 // components
 import ScrollToTopOnMount from "../components/ScrollToTopOnMount"
+// functions
+import { getObjectFromJSON } from "../functions/getJSON"
 
 // グローバルオブジェクトにセットされてるルーティング情報を取得
 const ROUTES = window.__ROUTES__

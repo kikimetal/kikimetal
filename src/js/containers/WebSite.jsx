@@ -7,7 +7,7 @@ import NotFound from '../components/NotFound'
 import LazyLoadImg from '../components/LazyLoadImg'
 // modules
 import action from "../modules/action"
-import getArrayFromJSON from "../functions/getArrayFromJSON"
+import { getArrayFromJSON } from "../functions/getJSON"
 
 class WebSite extends React.Component{
   constructor(){
