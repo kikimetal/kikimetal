@@ -7,6 +7,7 @@ import NotFound from '../components/NotFound'
 import LazyLoadImg from '../components/LazyLoadImg'
 // modules
 import action from "../modules/action"
+import getArrayFromJSON from "../functions/getArrayFromJSON"
 
 class WebSite extends React.Component{
   constructor(){
@@ -32,24 +33,7 @@ class WebSite extends React.Component{
   }
 }
 
-function getJSON(url) {
-  var req = new XMLHttpRequest()
-
-  // XMLHttpRequest オブジェクトの状態が変化した際に呼び出されるイベントハンドラ
-  req.onreadystatechange = function() {
-    if(req.readyState == 4 && req.status == 200){ // サーバーからのレスポンスが完了し、かつ、通信が正常に終了した場合
-      // alert(req.responseText) // 取得した JSON ファイルの中身を表示
-      // return req.responseText
-    }
-  }
-  req.open("GET", url, false)
-  req.send(null)
-  return JSON.parse(req.responseText)
-}
-
-// let websites = getJSON(`${window.__ASSETS__}/websites.json`)
-let websites = getJSON(`${location.origin}/assets/websites.json`)
-websites = Object.values(websites) // 値を詰め込んだ配列へ
+let websites = getArrayFromJSON(`${location.origin}/assets/websites.json`)
 
 const Sites = ({ reverse }) => (
   <div className={`Sites ${reverse && "reverse"}`}>

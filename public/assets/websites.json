@@ -2,7 +2,7 @@
   "201611": {
     "date": "201611",
     "title": "香水ブランドサイト",
-    "image": "garment_v1.png",
+    "image": "garment_v1.jpg",
     "url": "http://kikimetal.com/portfolio/garment/v1/",
     "skill": "HTML, CSS, jQuery, JavaScript",
     "period": "2週間",
@@ -12,7 +12,7 @@
   "201702": {
     "date": "201702",
     "title": "あそび",
-    "image": "mohumohu.png",
+    "image": "mohumohu.jpg",
     "url": "http://kikimetal.com/portfolio/mohumohu/",
     "skill": "HTML, CSS, jQuery, JavaScript",
     "period": "3日",
@@ -22,7 +22,7 @@
   "201704": {
     "date": "201704",
     "title": "協会のサイト",
-    "image": "b-assoc.png",
+    "image": "b-assoc.jpg",
     "url": "http://www.bulgarian-rose.or.jp",
     "skill": "PHP, HTML, CSS, JavaScript, canvas, p5js",
     "period": "1ヶ月",
@@ -32,7 +32,7 @@
   "201705": {
     "date": "201705",
     "title": "コーポレートサイト",
-    "image": "cvl.png",
+    "image": "cvl.jpg",
     "url": "http://www.carvancl.co.jp",
     "skill": "HTML, CSS, SVG, JavaScript",
     "period": "1週間",
@@ -42,7 +42,7 @@
   "201709": {
     "date": "201709",
     "title": "香水のブランドサイト",
-    "image": "garment_v2.png",
+    "image": "garment_v2.jpg",
     "url": "https://www.takeruyamashita.com",
     "skill": "PHP, HTML, CSS, SVG, JavaScript, ES2015, React, Gulp, Babel",
     "period": "1ヶ月",
@@ -52,7 +52,7 @@
   "201710": {
     "date": "201710",
     "title": "美容系のECサイト",
-    "image": "darena-ec.png",
+    "image": "darena-ec.jpg",
     "url": "https://www.rosedarena.com/ec/html/",
     "skill": "PHP, HTML, CSS, JavaScript, EC-Cube",
     "period": "2週間",
@@ -62,7 +62,7 @@
   "201712": {
     "date": "201712",
     "title": "www.kikimetal.com",
-    "image": "kikimetal.png",
+    "image": "kikimetal.jpg",
     "url": "https://www.kikimetal.com",
     "skill": "PHP, HTML, CSS, JavaScript, ES2015, React, Redux, Gulp, Webpack, Babel",
     "period": "1週間",
