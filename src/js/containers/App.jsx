@@ -147,19 +147,6 @@ class App extends React.Component{
       <div className="App">
         <MyHelmet />
 
-        {/*<div className="bg height100"></div>*/}
-        {/*<AnimatedSwitch
-          atEnter={bounceTransitionSm.atEnter}
-          atLeave={bounceTransitionSm.atLeave}
-          atActive={bounceTransitionSm.atActive}
-          mapStyles={mapStyles}
-          className={`animated-switch-wrapper ${!this.props.isScreenWidth.sm && "fix-height"}`}
-          >
-          <Route exact path="/" component={() => <Bg scale={1} size="contain" imgsrc="/assets/img/bg.png" />} />
-          <Route exact path="/graffiti" component={() => <Bg scale={1} size="contain" imgsrc="/assets/img/mohu-pc.png" />} />
-          <Route path="/website" component={() => <Bg scale={1} size="contain" imgsrc="/assets/img/mohu-pc.png" />} />
-          <Route component={NotFound} />
-        </AnimatedSwitch>*/}
         <Bg scale={1} size="contain" imgsrc="/assets/img/mohu-pc.png" />
 
         <main className="main height100">
