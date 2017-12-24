@@ -5,28 +5,27 @@ import { connect } from "react-redux"
 import Btn from '../components/Btn'
 import NotFound from '../components/NotFound'
 import LazyLoadImg from '../components/LazyLoadImg'
-// modules
-import action from "../modules/action"
+// functions
 import { getArrayFromJSON } from "../functions/getJSON"
 
 class WebSite extends React.Component{
-  constructor(){
-    super()
-    this.state = {
-      reverse: false,
-    }
-  }
+  // constructor(){
+  //   super()
+  //   this.state = {
+  //     reverse: false,
+  //   }
+  // }
   render(){
     return (
       <div className="WebSite page">
         <h1 className="page-title top">WebSite</h1>
         <Btn
           style={{maxWidth: "300px"}}
-          onClick={() => this.setState({reverse: !this.state.reverse})}
+          onClick={this.props.sortReverse}
           >
-          SORT : {this.state.reverse ? "古い順にする" : "新しい順にする"}
+          SORT : {this.props.isReverse ? "古い順にする" : "新しい順にする"}
         </Btn>
-        <Sites reverse={this.state.reverse} />
+        <Sites reverse={this.props.isReverse} />
         <h1 className="page-title bottom">WebSite</h1>
       </div>
     )
@@ -74,10 +73,12 @@ const Site = ({ date, title, image, url, skill, period, comment }) => (
   </section>
 )
 
-export default WebSite
-// const mapStateToProps = state => ({selectedItem: state.selectedItem })
-// const mapDispatchToProps = dispatch => ({
-//   dispatchSelectItemCyan: () => dispatch(action.selectItem("cyan")),
-//   dispatchSelectItemYellow: () => dispatch(action.selectItem("yellow")),
-// })
-// export default connect(mapStateToProps, mapDispatchToProps)(WebSite)
+const mapStateToProps = state => ({
+  isReverse: state.isSortWebsitesReverse,
+})
+// modules
+import { sortReverseWebsites } from "../modules/action"
+const mapDispatchToProps = dispatch => ({
+  sortReverse: () => dispatch(sortReverseWebsites()),
+})
+export default connect(mapStateToProps, mapDispatchToProps)(WebSite)

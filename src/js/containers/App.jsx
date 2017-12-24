@@ -190,18 +190,15 @@ const Header = () => (
   </div>
 )
 
-import action from "../modules/action"
+import { setScreenWidth } from "../modules/action"
 
 // const mapStateToProps = state => state // <- OK (router が入っているから)
 const mapStateToProps = state => ({
   isScreenWidth: state.isScreenWidth,
-  isShowTrigger: state.isShowTrigger,
   router: state.router, // <- 必須
   // ここで router を読み込まないと、react-router-transition が動作しない。
 })
 const mapStateToDispatch = dispatch => ({
-  setScreenWidth: (width) => dispatch(action.setScreenWidth(width)),
-  showTrigger: () => dispatch(action.showTrigger),
-  hideTrigger: () => dispatch(action.hideTrigger),
+  setScreenWidth: width => dispatch(setScreenWidth(width)),
 })
 export default connect(mapStateToProps, mapStateToDispatch)(App)

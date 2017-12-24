@@ -1,65 +1,10 @@
-export const initialState = {
-  kiki: {
-    text: "hi i am kiki.",
-    age: 21,
-  },
-  selectedItem: null,
-  isShowTrigger: true,
-  isScreenWidth: {
-    sm: true,
-    md: false,
-    lg: false,
-  },
+const isScreenWidthInitialState = {
+  px: 0,
+  sm: false,
+  md: false,
+  lg: false,
 }
-
-const kiki = (kiki = initialState.kiki, action) => {
-  switch (action.type) {
-    case "UPDATE_ALL":
-      return {
-        ...kiki,
-        text: action.text + new Date(Date.now()).toString(),
-        age: kiki.age + 1,
-      }
-
-    case "UPDATE_TEXT":
-      return {
-        ...kiki,
-        text: action.text + new Date(Date.now()).toString()
-      }
-
-    case "UPDATE_AGE":
-      return {
-        ...kiki,
-        age: kiki.age + 1,
-      }
-
-    default:
-      return kiki
-  }
-}
-
-const selectedItem = (state = initialState.selectedItem, action) => {
-  switch (action.type) {
-    case "SELECT_ITEM":
-      return action.item
-
-    default:
-      return state
-  }
-}
-
-const isShowTrigger = (state = initialState.isShowTrigger, action) => {
-  switch (action.type) {
-    case "SHOW":
-      return true
-    case "HIDE":
-      return false
-    default:
-      return state
-  }
-}
-
-const isScreenWidth = (state = initialState.isScreenWidth, action) => {
+export const isScreenWidth = (state = isScreenWidthInitialState, action) => {
   const base = {
     sm: false,
     md: false,
@@ -74,18 +19,21 @@ const isScreenWidth = (state = initialState.isScreenWidth, action) => {
         return {
           ...base,
           lg: true,
+          px: action.width,
         }
       }else if (action.width >= 768){
         if (state.md) break
         return {
           ...base,
           md: true,
+          px: action.width,
         }
       }else{
         if (state.sm) break
         return {
           ...base,
           sm: true,
+          px: action.width,
         }
       }
     default:
@@ -94,11 +42,16 @@ const isScreenWidth = (state = initialState.isScreenWidth, action) => {
   return state
 }
 
-export const reducers = {
-  kiki,
-  selectedItem,
-  isShowTrigger,
-  isScreenWidth,
+export const loadWebsites = (state = false, action) => {
+  if (action.type === "DONE") {
+    return true
+  }
+  return state
 }
 
-export default reducers
+export const isSortWebsitesReverse = (state = false, action) => {
+  if (action.type === "SORT_REVERSE") {
+    return !state
+  }
+  return state
+}
