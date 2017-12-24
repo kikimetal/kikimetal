@@ -31,7 +31,8 @@
     "react-router-transition": "^1.1.2",
     "react-scroll": "^1.7.3",
     "react-touch-events": "^2.1.0",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
