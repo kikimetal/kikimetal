@@ -1,0 +1,62 @@
+.MenuTrigger{
+  // box-sizing: content-box;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+
+  // padding: 30px;
+  width: 36px;
+  height: 36px;
+  color: #333;
+  transform: rotate(180deg);
+
+  & > span{
+    width: 100%;
+    height: 0px;
+    border: 2px solid;
+    border-radius: 4px;
+    @for $i from 1 through 3 {
+      &:nth-last-child(#{$i}){
+        transition: #{0.3s + $i * 0.07s} ease;
+      }
+    }
+  }
+
+  &.collapse{
+    width: 30px;
+    height: 30px;
+    justify-content: space-between;
+    transform-origin: 42% 50%;
+    color: #666;
+    opacity: 0.1;
+    animation: menu-spin 0.9s linear infinite;
+    @keyframes menu-spin{
+      to{
+        transform: rotate(0deg);
+      }
+      from{
+        transform: rotate(-360deg);
+      }
+    }
+
+    & > span{
+      $r: 5px;
+      position: relative;
+      width: 0px;
+      border: $r solid;
+      border-radius: $r;
+
+      &:nth-child(1){
+        top: -$r;
+        // left: -$r;
+      }
+      &:nth-child(2){
+        left: calc(100% - #{$r});
+      }
+      &:nth-child(3){
+        top: $r;
+        // left: -$r;
+      }
+    }
+  }
+}

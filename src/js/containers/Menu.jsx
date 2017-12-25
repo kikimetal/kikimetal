@@ -5,6 +5,7 @@ import { connect } from "react-redux"
 // components
 import Btn from "../components/Btn"
 import KikiLogoType from "../components/KikiLogoType"
+import MenuTrigger from "../components/MenuTrigger"
 
 class Menu extends React.Component{
   constructor(){
@@ -27,7 +28,8 @@ class Menu extends React.Component{
             className="switch"
             onClick={this.toggleMobileMenu}
             >
-            <span><i className="far fa-sun"></i></span>
+            {/*<span><i className="far fa-sun"></i></span>*/}
+            <MenuTrigger collapse={this.state.isShowMobileMenu} />
           </div>
           <div
             className={`container height100 ${this.state.isShowMobileMenu ? "show" : "hide"}`}

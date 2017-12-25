@@ -13,8 +13,10 @@
 
   transition: 0.3s ease;
 
-  &:hover{
-    background: #fff;
-    color: var(--kiki-pink);
+  @media screen and (min-width: 768px){
+    &:hover{
+      background: #fff;
+      color: var(--kiki-pink);
+    }
   }
 }
