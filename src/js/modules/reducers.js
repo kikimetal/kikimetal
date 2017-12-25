@@ -51,13 +51,6 @@ export const isScreenWidth = (state = isScreenWidthInitialState, action) => {
   return state
 }
 
-// export const loadWebsites = (state = false, action) => {
-//   if (action.type === "DONE") {
-//     return true
-//   }
-//   return state
-// }
-
 export const isSortWebsitesReverse = (state = false, action) => {
   if (action.type === "SORT_REVERSE") {
     return !state
@@ -65,9 +58,9 @@ export const isSortWebsitesReverse = (state = false, action) => {
   return state
 }
 
-export const didSetWebsitesData = (state = false, action) => {
-  if (action.type === "GET_DATA_SUCCESS") {
-    return true
+export const websitesDataCondition = (state = false, action) => {
+  if (action.type === "SET_WEBSITES_DATA_CONDITION") {
+    return action.condition
   }
   return state
 }

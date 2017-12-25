@@ -6,22 +6,37 @@ import Btn from '../components/Btn'
 import NotFound from '../components/NotFound'
 import LazyLoadImg from '../components/LazyLoadImg'
 // functions
-import { getArrayFromJSON } from "../functions/getJSON"
+// import { getArrayFromJSON } from "../functions/getJSON"
 
 class WebSite extends React.Component{
   componentDidMount(){
-    if (!this.props.didSetData) {
-      const data = getArrayFromJSON(`${location.origin}/assets/websites.json`)
-      if (data) {
-        this.props.getDataSuccess()
-        this.props.setData(data)
-      } else {
-        // error
-      }
+    if (this.props.dataCondition !== "success") {
+      fetch(`${location.origin}/assets/websites.json`)
+        .then((response) => {
+          if(!response.ok) {
+            throw Error(response.statusText);
+          }
+          return response;
+        })
+        .then(response => response.json())
+        .then(jsonDataObj => Object.values(jsonDataObj))
+        .then(jsonDataArr => this.props.setData(jsonDataArr))
+        .then(() => this.props.setCondition("success"))
+        .catch((errorText) => this.props.setCondition("error"))
     }
   }
   render(){
-    console.log(this.props.didSetData)
+    if (this.props.dataCondition === "error") {
+      return (
+        <div className="WebSite page">
+          <h1 className="page-title top">WebSite</h1>
+          <p style={{
+              color: "hotpink",
+              fontSize: "28px",
+            }}>Sorry, server error x(</p>
+        </div>
+      )
+    }
     return (
       <div className="WebSite page">
         <h1 className="page-title top">WebSite</h1>
@@ -33,7 +48,7 @@ class WebSite extends React.Component{
         </Btn>
 
         <div className={`Sites ${this.props.isReverse && "reverse"}`}>
-          {this.props.websitesData.map((data) => (
+          {this.props.data.map((data) => (
             <Site
               key={data.title}
               title={data.title}
@@ -75,14 +90,14 @@ const Site = ({ date, title, image, url, skill, period, comment }) => (
 
 const mapStateToProps = state => ({
   isReverse: state.isSortWebsitesReverse,
-  didSetData: state.didSetWebsitesData,
-  websitesData: state.websitesData,
+  dataCondition: state.websitesDataCondition,
+  data: state.websitesData,
 })
 // modules
 import * as action from "../modules/action"
 const mapDispatchToProps = dispatch => ({
   sortReverse: () => dispatch(action.sortReverseWebsites()),
-  getDataSuccess: () => dispatch(action.getWebsitesDataSuccess()),
+  setCondition: condition => dispatch(action.setWebsitesDataCondition(condition)),
   setData: data => dispatch(action.setWebsitesData(data)),
 })
 export default connect(mapStateToProps, mapDispatchToProps)(WebSite)

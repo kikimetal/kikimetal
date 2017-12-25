@@ -1,21 +1,18 @@
 export const setScreenWidth = width => ({
   type: "SET_WIDTH",
-  width: width,
-})
-
-export const loadWebsitesDone = () => ({
-  type: "DONE",
+  width,
 })
 
 export const sortReverseWebsites = () => ({
   type: "SORT_REVERSE",
 })
 
-export const getWebsitesDataSuccess = () => ({
-  type: "GET_DATA_SUCCESS",
+export const setWebsitesDataCondition = condition => ({
+  type: "SET_WEBSITES_DATA_CONDITION",
+  condition,
 })
 
 export const setWebsitesData = data => ({
   type: "SET_DATA",
-  data: data,
+  data,
 })
