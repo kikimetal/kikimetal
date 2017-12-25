@@ -104,7 +104,7 @@ gulp.task("css:min", ["css:clean"], () =>
 // use "gulp server"
 import browserSync from "browser-sync"
 import php from "gulp-connect-php"
-const port = 8080
+const port = 8888
 
 gulp.task("php-built-in-server", ["browser-sync"], () => {
   gulp.watch("./public/**/*", ["browser-reload"])

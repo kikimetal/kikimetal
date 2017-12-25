@@ -15,6 +15,7 @@
   }
 
   .Sites{
+    width: 100%;
     display: flex;
     flex-flow: column;
 
@@ -60,7 +61,8 @@
         flex-flow: row;
         justify-content: center;
         align-items: center;
-        & > div{
+        & > .flex-item{
+          flex: 0 0 50%;
           width: 50%;
         }
       }

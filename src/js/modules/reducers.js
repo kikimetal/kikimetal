@@ -3,16 +3,25 @@ const isScreenWidthInitialState = {
   sm: false,
   md: false,
   lg: false,
+  xl: false,
 }
 export const isScreenWidth = (state = isScreenWidthInitialState, action) => {
   const base = {
     sm: false,
     md: false,
     lg: false,
+    xl: false,
   }
   switch (action.type) {
-    case "SET":
-      if (action.width >= 1240){
+    case "SET_WIDTH":
+      if (action.width >= 1900){
+        if (state.xl) break
+        return {
+          ...base,
+          xl: true,
+          px: action.width,
+        }
+      }else if (action.width >= 1240){
         // 変更がない場合は break で抜けて state を返さないと、
         // ブレークポイントまたいでないのに redux から レンダー命令が出ちゃう
         if (state.lg) break
@@ -42,16 +51,30 @@ export const isScreenWidth = (state = isScreenWidthInitialState, action) => {
   return state
 }
 
-export const loadWebsites = (state = false, action) => {
-  if (action.type === "DONE") {
+// export const loadWebsites = (state = false, action) => {
+//   if (action.type === "DONE") {
+//     return true
+//   }
+//   return state
+// }
+
+export const isSortWebsitesReverse = (state = false, action) => {
+  if (action.type === "SORT_REVERSE") {
+    return !state
+  }
+  return state
+}
+
+export const didSetWebsitesData = (state = false, action) => {
+  if (action.type === "GET_DATA_SUCCESS") {
     return true
   }
   return state
 }
 
-export const isSortWebsitesReverse = (state = false, action) => {
-  if (action.type === "SORT_REVERSE") {
-    return !state
+export const websitesData = (state = [], action) => {
+  if (action.type === "SET_DATA") {
+    return action.data
   }
   return state
 }
