@@ -147,7 +147,7 @@ class App extends React.Component{
       <div className="App">
         <MyHelmet />
 
-        <Bg scale={1} size="contain" imgsrc="/assets/img/mohu-pc.png" />
+        <Bg scale={1} size="cover" imgsrc="/assets/img/171221_kikimohu_v2_LineColorChange_min.png" />
 
         <main className="main height100">
           <nav>
