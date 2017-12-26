@@ -1,7 +1,7 @@
 import React from 'react'
 
-const Btn = ({ children, label, ...props }) => (
-  <span className="Btn" {...props}>
+const Btn = ({ children, label, className, ...props }) => (
+  <span className={`Btn ${className ? className : ""}`} {...props}>
     {children || label}
   </span>
 )
