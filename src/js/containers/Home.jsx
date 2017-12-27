@@ -9,7 +9,7 @@ import Btn from "../components/Btn"
 const Home = props => (
   <div className="Home page">
 
-    <div className="first-view height100">
+    <div className="first-view">
       <h1>Welcome kikimetal.com</h1>
       <p>ようこそ！</p>
       <p>
