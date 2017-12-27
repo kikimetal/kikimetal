@@ -8,8 +8,8 @@ import KikiLogoType from "../components/KikiLogoType"
 import MenuTrigger from "../components/MenuTrigger"
 
 class Menu extends React.Component{
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
       isShowMobileMenu: false,
     }
