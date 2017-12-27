@@ -1,8 +1,8 @@
 import React from "react"
 
 export default class LazyLoadImg extends React.Component{
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
       isShowPlaceholder: true,
     }
