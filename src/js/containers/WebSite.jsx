@@ -5,8 +5,6 @@ import { connect } from "react-redux"
 import Btn from '../components/Btn'
 import NotFound from '../components/NotFound'
 import LazyLoadImg from '../components/LazyLoadImg'
-// functions
-// import { getArrayFromJSON } from "../functions/getJSON"
 
 class WebSite extends React.Component{
   componentDidMount(){
@@ -41,7 +39,10 @@ class WebSite extends React.Component{
       <div className="WebSite page">
         <h1 className="page-title top">WebSite</h1>
         <Btn
-          style={{maxWidth: "400px"}}
+          className="sort-switch"
+          style={{
+            maxWidth: "410px",
+          }}
           onClick={this.props.sortReverse}
           >
           SORT : {this.props.isReverse ? "古い順にする" : "新しい順にする"}
@@ -82,7 +83,7 @@ const Site = ({ date, title, image, url, skill, period, comment }) => (
         <p><a href={url}><Btn>みる</Btn></a></p>
       </div>
       <a className="flex-item" href={url}>
-        <LazyLoadImg imgsrc={image ? "/assets/img/website/" + image : "/assets/img/kiki-star/square-centering.svg"} />
+        <LazyLoadImg className="img-link" imgsrc={image ? "/assets/img/website/" + image : "/assets/img/kiki-star/square-centering.svg"} />
       </a>
     </div>
   </section>
