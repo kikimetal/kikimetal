@@ -1,6 +1,6 @@
 .WebSite{
-
-  background: rgba(0, 0, 0, 0.4);
+  position: relative;
+  background: rgba(0, 0, 0, 0.2);
 
   .page-title{
     color: white;
@@ -9,9 +9,16 @@
   p{
     text-align: center;
   }
+
   .Btn{
     margin: 1em auto;
     width: 80%;
+  }
+  .sort-switch{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1;
   }
 
   .Sites{
@@ -32,10 +39,26 @@
       img{
         display: block;
       }
+
+      .img-link{
+        overflow: hidden;
+        img{
+          transition-timing-function: ease;
+          transform-origin: center;
+          transition: 0.16s;
+          &:hover{
+            transition: transform 3s, filter 0.3s;
+            transform: scale(1.04);
+            filter: brightness(0.8);
+          }
+        }
+      }
+
       h1{
         padding: 1em 0 0.2em;
         font-weight: normal;
       }
+
       .description{
         padding: 0.7em 1em 0;
       }
