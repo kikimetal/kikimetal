@@ -14,7 +14,7 @@ export default class LazyLoadImg extends React.Component{
     }
 
     return (
-      <div className="LazyLoadImg">
+      <div className={`LazyLoadImg ${this.props.className}`}>
         <img src={this.props.imgsrc} onLoad={hidePlaceholder} />
         <div className={`placeholder ${this.state.isShowPlaceholder ? "show" : "hide"}`}>
           <span><i className="far fa-sun fa-spin"></i></span>
