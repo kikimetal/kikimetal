@@ -147,13 +147,18 @@ class App extends React.Component{
       <div className="App">
         <MyHelmet />
 
-        <Bg scale={1} size="cover" imgsrc="/assets/img/171221_kikimohu_v2_LineColorChange_min.png" />
+        <Bg
+          scale={1}
+          className="height100"
+          size={this.props.isScreenWidth.sm ? "cover" : "contain"}
+          imgsrc="/assets/img/171221_kikimohu_v2_LineColorChange_transparent_min.png"
+          />
+
+        <nav>
+          <Menu/>
+        </nav>
 
         <main className="main height100">
-          <nav>
-            <Menu/>
-          </nav>
-          {/*<Header />*/}
           <AnimatedSwitch
             atEnter={bounceTransition.atEnter}
             atLeave={bounceTransition.atLeave}
@@ -167,7 +172,6 @@ class App extends React.Component{
             <Route component={NotFound} />
           </AnimatedSwitch>
         </main>
-
       </div>
     )
   }
