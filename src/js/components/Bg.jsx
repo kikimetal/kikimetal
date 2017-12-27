@@ -3,7 +3,7 @@ import React from "react"
 const Bg = ({ imgsrc, size, position, scale, className }) => {
   return (
     <div
-      className={`Bg height100`}
+      className={`Bg ${className ? className : ""}`}
       style={{
         backgroundImage: `url("${imgsrc}")`,
         backgroundSize: size || "contain",
