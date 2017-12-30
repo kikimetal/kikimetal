@@ -20,6 +20,7 @@ import Bg from "../components/Bg"
 import NotFound from "../components/NotFound"
 import Btn from "../components/Btn"
 import KikiStar from "../components/KikiStar"
+import LightsSvg from "../components/LightsSvg"
 
 // react-router-transition setting
 /**
@@ -153,6 +154,8 @@ class App extends React.Component{
           size={this.props.isScreenWidth.sm ? "cover" : "contain"}
           imgsrc="/assets/img/171221_kikimohu_v2_LineColorChange_transparent_min.png"
           />
+
+        <LightsSvg />
 
         <nav>
           <Menu/>
