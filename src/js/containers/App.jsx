@@ -109,23 +109,10 @@ class App extends React.Component{
   }
 
   componentDidMount(){
-    this.handleResize()
-    window.addEventListener("resize", () => {
-      this.handleResize()
-    })
-  }
-
-  handleResize(){
     this.props.setScreenWidth(window.innerWidth)
-    /* set style height100 class elements */
-    setHeight100elements()
-    function setHeight100elements(){
-      let height100elements = document.getElementsByClassName("height100")
-      height100elements = Array.from(height100elements)
-      height100elements.forEach(elem => {
-        elem.style.height = window.innerHeight + "px"
-      })
-    }
+    window.addEventListener("resize", () => {
+      this.props.setScreenWidth(window.innerWidth)
+    })
   }
 
   toTop(){
@@ -136,32 +123,32 @@ class App extends React.Component{
   }
 
   render(){
-
     const bounceTransition = this.props.isScreenWidth.sm
       ? bounceTransitionSm
       : bounceTransitionMd
 
-    // TODO: middleサイズ以上の画面height の設定を css 変更
+    // TODO: middle サイズ以上の画面 height の設定を css 変更
     // 100vh -> 100% になるように。
 
     return (
       <div className="App">
+
         <MyHelmet />
 
         <Bg
+          className={"blur"}
           scale={1}
-          className="height100"
           size={this.props.isScreenWidth.sm ? "cover" : "contain"}
           imgsrc="/assets/img/171221_kikimohu_v2_LineColorChange_transparent_min.png"
           />
 
         <LightsSvg />
 
-        <nav>
+        <nav className="nav">
           <Menu/>
         </nav>
 
-        <main className="main height100">
+        <main className="main">
           <AnimatedSwitch
             atEnter={bounceTransition.atEnter}
             atLeave={bounceTransition.atLeave}
@@ -175,29 +162,11 @@ class App extends React.Component{
             <Route component={NotFound} />
           </AnimatedSwitch>
         </main>
+
       </div>
     )
   }
 }
-
-const Footer = () => (
-  <footer className="footer">
-    <small>Powered by KIKIMETAL.</small>
-  </footer>
-)
-
-const Header = () => (
-  <div className="Header">
-    <KikiStar spin={false} opacity={0.6}/>
-    <Switch>
-      <Route exact path="/" render={() => <span>Home</span>} />
-      <Route exact path="/graffiti" render={() => <span>Graffiti</span>} />
-      <Route path="/website" render={() => <span>WebSite</span>} />
-    </Switch>
-  </div>
-)
-
-import { setScreenWidth } from "../modules/action"
 
 // const mapStateToProps = state => state // <- OK (router が入っているから)
 const mapStateToProps = state => ({
@@ -205,7 +174,10 @@ const mapStateToProps = state => ({
   router: state.router, // <- 必須
   // ここで router を読み込まないと、react-router-transition が動作しない。
 })
+
+import * as action from "../modules/action"
 const mapStateToDispatch = dispatch => ({
-  setScreenWidth: width => dispatch(setScreenWidth(width)),
+  setScreenWidth: width => dispatch(action.setScreenWidth(width)),
 })
+
 export default connect(mapStateToProps, mapStateToDispatch)(App)
