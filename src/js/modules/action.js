@@ -3,8 +3,8 @@ export const setScreenWidth = width => ({
   width,
 })
 
-export const sortReverseWebsites = () => ({
-  type: "SORT_REVERSE",
+export const reverseWebsite = () => ({
+  type: "REVERSE_WEBSITE",
 })
 
 export const setWebsitesDataCondition = condition => ({
@@ -16,6 +16,7 @@ export const setWebsitesData = data => ({
   type: "SET_DATA",
   data,
 })
+
 
 // fetch
 // TODO

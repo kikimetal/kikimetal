@@ -1,5 +1,4 @@
 const isScreenWidthInitialState = {
-  px: 0,
   sm: false,
   md: false,
   lg: false,
@@ -15,34 +14,34 @@ export const isScreenWidth = (state = isScreenWidthInitialState, action) => {
   switch (action.type) {
     case "SET_WIDTH":
       if (action.width >= 1900){
+        // 変更がない場合は break で抜けて state を返さないと、
+        // ブレークポイントまたいでないのに redux から レンダー命令が出ちゃう
+        // -> リサイズするたびにスクロール位置がリセットされてやばい
         if (state.xl) break
         return {
           ...base,
           xl: true,
-          px: action.width,
         }
-      }else if (action.width >= 1240){
-        // 変更がない場合は break で抜けて state を返さないと、
-        // ブレークポイントまたいでないのに redux から レンダー命令が出ちゃう
+      }
+      if (action.width >= 1240){
         if (state.lg) break
         return {
           ...base,
           lg: true,
-          px: action.width,
         }
-      }else if (action.width >= 768){
+      }
+      if (action.width >= 768){
         if (state.md) break
         return {
           ...base,
           md: true,
-          px: action.width,
         }
-      }else{
+      }
+      else{
         if (state.sm) break
         return {
           ...base,
           sm: true,
-          px: action.width,
         }
       }
     default:
@@ -51,8 +50,8 @@ export const isScreenWidth = (state = isScreenWidthInitialState, action) => {
   return state
 }
 
-export const isSortWebsitesReverse = (state = false, action) => {
-  if (action.type === "SORT_REVERSE") {
+export const isReverseWebsite = (state = false, action) => {
+  if (action.type === "REVERSE_WEBSITE") {
     return !state
   }
   return state
