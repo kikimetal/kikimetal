@@ -1,3 +1,10 @@
+// :root{
+//   @for $i from 1 through 11 {
+//     --bg-c#{$i}: hsl(-105 + $i * 4, 82%, 84% + 1.5% * $i);
+//     --bg-w#{$i}: $i * 10%;
+//   }
+// }
+
 .Bg{
   position: fixed;
   top: 0;
@@ -5,14 +12,67 @@
   right: 0;
   bottom: 0;
   /* height: [js] window.innerHeight */
+  width: 100%;
+  height: 100vh;
 
-  // background-image: url("/assets/img/mohu-pc.png");
+  @for $i from 1 through 11 {
+    --bg-c#{$i}: hsl(-45 + $i * 4, 84%, 76% + 2.3% * $i);
+    --bg-cc#{$i}: hsl(-125 + $i * 4, 84%, 76% + 2.3% * $i);
+    --bg-w#{$i}: $i * 10%;
+  }
+
+  background-image:
+    linear-gradient(137deg,
+      var(--bg-c1) 0%, var(--bg-c1) var(--bg-w1),
+      var(--bg-c2) var(--bg-w1), var(--bg-c2) var(--bg-w2),
+      var(--bg-c3) var(--bg-w2), var(--bg-c3) var(--bg-w3),
+      var(--bg-c4) var(--bg-w3), var(--bg-c4) var(--bg-w4),
+      var(--bg-c5) var(--bg-w4), var(--bg-c5) var(--bg-w5),
+      var(--bg-c6) var(--bg-w5), var(--bg-c6) var(--bg-w6),
+      var(--bg-c7) var(--bg-w6), var(--bg-c7) var(--bg-w7),
+      var(--bg-c8) var(--bg-w7), var(--bg-c8) var(--bg-w8),
+      var(--bg-c9) var(--bg-w8), var(--bg-c9) var(--bg-w9),
+      var(--bg-c10) var(--bg-w9), var(--bg-c10) var(--bg-w10),
+      #fff var(--bg-w10), #fff)
+    ,linear-gradient(-137deg,
+      var(--bg-cc1) 0%, var(--bg-cc1) var(--bg-w1),
+      var(--bg-cc2) var(--bg-w1), var(--bg-cc2) var(--bg-w2),
+      var(--bg-cc3) var(--bg-w2), var(--bg-cc3) var(--bg-w3),
+      var(--bg-cc4) var(--bg-w3), var(--bg-cc4) var(--bg-w4),
+      var(--bg-cc5) var(--bg-w4), var(--bg-cc5) var(--bg-w5),
+      var(--bg-cc6) var(--bg-w5), var(--bg-cc6) var(--bg-w6),
+      var(--bg-cc7) var(--bg-w6), var(--bg-cc7) var(--bg-w7),
+      var(--bg-cc8) var(--bg-w7), var(--bg-cc8) var(--bg-w8),
+      var(--bg-cc9) var(--bg-w8), var(--bg-cc9) var(--bg-w9),
+      var(--bg-cc10) var(--bg-w9), var(--bg-cc10) var(--bg-w10),
+      #fff var(--bg-w10), #fff)
+  ;
   background-repeat: no-repeat;
-  // background-position: center;
-  // background-size: cover;
+  background-position: center;
+  background-blend-mode: multiply;
 
   pointer-events: none;
   z-index: -1;
 
-  transform: scale(1.2);
+  &::before{
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background-color: transparent;
+    background-image: url("/assets/img/171221_kikimohu_v2_LineColorChange_transparent_min.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: inherit;
+    // mix-blend-mode: lighten;
+    mix-blend-mode: color-burn;
+    transition: 0.3s ease;
+  }
+  &.blur::before{
+    filter: blur(9px);
+  }
 }
