@@ -10,10 +10,20 @@ const Home = props => (
   <div className="Home page">
 
     <div className="first-view">
-      <h1>Welcome kikimetal.com</h1>
-      <p>ようこそ！</p>
+      <div className="first-view-title">
+        <small>Welcome Kikimetal portfolio site</small>
+        <h1 className="logomark"><KikiStar /></h1>
+      </div>
       <p>
-        ここはききめたるの遊び場とか...<br/>ポートフォリオっぽい何かです。
+        ようこそ！<br />
+        ここはききめたるの遊び場とか...<br/>
+        ポートフォリオっぽい何かです。<br/>
+    </p>
+    <p>
+      ごちゃごちゃしてる印象を与えたかもしれません。<br/>
+        でもそれは自然なことです。<br/>
+      なぜならここは、<br/>
+    実験場の役割を担っているからです。<br/>
       </p>
     </div>
 
