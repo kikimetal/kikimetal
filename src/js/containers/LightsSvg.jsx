@@ -27,7 +27,6 @@ const LightsSvg = ({ width, height }) => {
 
   return (
     <svg className="LightsSvg" width={`${width}px`} height={`${height}px`} viewBox={`0 0 ${width} ${height}`} version="1.1">
-      {console.log(arr.length)}
       {arr.map((value, index) => (
         <LightsPath
           key={`lights-svg-path-${index}`}
