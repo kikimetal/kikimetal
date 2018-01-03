@@ -40,7 +40,7 @@
       color: var(--kiki-pink);
       padding: 20px;
       cursor: pointer;
-      z-index: 1;
+      z-index: 3;
     }
 
     .sort-switch{
@@ -72,7 +72,7 @@
       top: 0;
       left: 0;
       right: 0;
-      bottom: 0;
+      // height: HeightTransitionToFull
       background: white;
       transition: 0.4s ease;
       z-index: 2;
