@@ -38,15 +38,6 @@ class WebSite extends React.Component{
     return (
       <div className="WebSite page">
         <h1 className="page-title top">WebSite</h1>
-        <Btn
-          className="sort-switch"
-          style={{
-            maxWidth: "410px",
-          }}
-          onClick={this.props.sortReverse}
-          >
-          SORT : {this.props.isReverse ? "古い順にする" : "新しい順にする"}
-        </Btn>
 
         <div className={`Sites ${this.props.isReverse && "reverse"}`}>
           {this.props.data.map((data) => (
@@ -90,9 +81,9 @@ const Site = ({ date, title, image, url, skill, period, comment }) => (
 )
 
 const mapStateToProps = state => ({
-  isReverse: state.isSortWebsitesReverse,
   dataCondition: state.websitesDataCondition,
   data: state.websitesData,
+  isReverse: state.isReverseWebsite,
 })
 // modules
 import * as action from "../modules/action"
