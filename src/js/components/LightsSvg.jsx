@@ -1,25 +1,34 @@
 import React from "react"
+import { connect } from "react-redux"
 // functions
 import getRandomInt from "../functions/getRandomInt"
 
 const LightsPath = ({ color, scale, rotate, x, y, delay }) => {
-  color = color || "transparent"
-  scale = scale || 0
-  rotate = rotate ? rotate + 45 : 0
-  x = x || 0
-  y = y || 0
-  delay = delay || 0
+  rotate = rotate + 45
   return (
     <g className="lights-effect" stroke="none" strokeWidth="1" fill={color} fillRule="evenodd" transform={`scale(${scale}) translate(${x}, ${y})`} style={{animationDelay: -delay + "s"}}>
       <path d="M1.447,1.447 C6.447,6.447 6.447,6.447 11.447,1.447 C6.447,6.447 6.447,6.447 11.447,11.447 C6.447,6.447 6.447,6.447 1.447,11.447 C6.447,6.447 6.447,6.447 1.447,1.447 Z" id="Light-super-10px" transform={`translate(6.447, 6.447) rotate(${rotate}) translate(-6.447, -6.447)`}></path>
     </g>
   )
 }
+LightsPath.defaultProps = {
+  color: "transparent",
+  scale: 0,
+  rotate: 0,
+  x: 0,
+  y: 0,
+  delay: 0,
+}
 
-const arr = new Array(66).fill(null)
+
 const LightsSvg = ({ width, height }) => {
+
+  const num = Math.floor(width / 10)
+  const arr = new Array(num).fill(null)
+
   return (
     <svg className="LightsSvg" width={`${width}px`} height={`${height}px`} viewBox={`0 0 ${width} ${height}`} version="1.1">
+      {console.log(arr.length)}
       {arr.map((value, index) => (
         <LightsPath
           key={`lights-svg-path-${index}`}
@@ -33,5 +42,10 @@ const LightsSvg = ({ width, height }) => {
     </svg>
   )
 }
+
+// const mapStateToProps = state => ({
+//   isScreenWidthPx: state.isScreenWidth.px,
+// })
+// export default connect(mapStateToProps)(LightsSvg)
 
 export default () => <LightsSvg width={window.innerWidth} height={window.innerHeight} />
