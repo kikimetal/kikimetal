@@ -42,28 +42,30 @@ const bounceTransitionBase = {
   // start in a transparent, upscaled state
   atEnter: {
     opacity: 0,
-    scale: 1.2,
-    translateY: 0,
+    // scale: 1.2,
+    // translateY: 0,
+    translateY: 40,
   },
   // leave in a transparent, downscaled state
   atLeave: {
-    opacity: bounce(0, {stiffness: 97, damping: 34}),
-    // scale: bounce(0.8, {stiffness: 97, damping: 34}),
-    scale: 1,
-    translateY: 0,
+    opacity: bounce(0, {stiffness: 127, damping: 32}),
+    // scale: 1,
+    // translateY: 0,
+    translateY: bounce(-20, {stiffness: 122, damping: 24})
   },
   // and rest at an opaque, normally-scaled state
   atActive: {
-    opacity: bounce(1),
-    scale: bounce(1, {stiffness: 210, damping: 33}),
-    translateY: 0,
+    opacity: bounce(1, {stiffness: 82, damping: 25}),
+    // scale: bounce(1, {stiffness: 210, damping: 33}),
+    // translateY: 0,
+    translateY: bounce(0, {stiffness: 152, damping: 22}),
   },
 }
 const bounceTransitionSm = {
   atEnter: {
     opacity: 0,
     scale: 1,
-    translateY: 36,
+    translateY: 46,
   },
   atLeave: {
     // opacity: bounce(0, {stiffness: 300, damping: 30}),
@@ -71,13 +73,13 @@ const bounceTransitionSm = {
     // translateY: 0,
   },
   atActive: {
-    opacity: bounce(1, {stiffness: 102, damping: 25}),
+    opacity: bounce(1, {stiffness: 102, damping: 27}),
     scale: 1,
-    translateY: bounce(0, {stiffness: 132, damping: 22}),
+    translateY: bounce(0, {stiffness: 132, damping: 23}),
   },
 }
 const bounceTransitionMd = bounceTransitionBase
-const bounceTransitionLg = bounceTransitionMd
+// const bounceTransitionLg = bounceTransitionMd
 
 // we need to map the `scale` prop we define below // to the transform style property
 function mapStyles(styles) {
@@ -128,9 +130,6 @@ class App extends React.Component{
     const bounceTransition = this.props.windowSize === "sm"
       ? bounceTransitionSm
       : bounceTransitionMd
-
-    // TODO: middle サイズ以上の画面 height の設定を css 変更
-    // 100vh -> 100% になるように。
 
     return (
       <div className="App">

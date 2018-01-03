@@ -1,6 +1,5 @@
 .KikiStar{
   display: inline-block;
-  // margin: 0 0.2em;
   margin: 0;
   margin-left: -0.16em;
   width: 1em;
@@ -15,8 +14,8 @@
   vertical-align: -0.14em;
 
   &.spin{
-    animation: spin 1.2s ease alternate infinite both;
-    @keyframes spin{
+    animation: kiki-star-spin 1.2s ease alternate infinite both;
+    @keyframes kiki-star-spin{
       from{
         transform: rotate(-30deg);
       }
