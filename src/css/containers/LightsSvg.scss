@@ -9,6 +9,7 @@
   pointer-events: none;
 
   .lights-effect{
+    fill: transparent;
     animation: lights-effect 6s linear alternate infinite;
     @keyframes lights-effect{
       0%{

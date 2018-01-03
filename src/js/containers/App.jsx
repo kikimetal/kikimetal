@@ -1,5 +1,5 @@
 import React from "react"
-import { BrowserRouter, Link, Route, Switch } from "react-router-dom"
+import { BrowserRouter, Route, Switch } from "react-router-dom"
 import { connect } from "react-redux"
 // router switch transition
 import { spring, AnimatedSwitch } from "react-router-transition"
@@ -14,13 +14,13 @@ import Home from "./Home"
 import Graffiti from "./Graffiti"
 import WebSite from "./WebSite"
 import Menu from "./Menu"
+import LightsSvg from "./LightsSvg"
 
 // components
+import Btn from "../components/Btn"
 import Bg from "../components/Bg"
 import NotFound from "../components/NotFound"
-import Btn from "../components/Btn"
 import KikiStar from "../components/KikiStar"
-import LightsSvg from "../components/LightsSvg"
 
 // react-router-transition setting
 /**
@@ -104,15 +104,17 @@ function mapStyles(styles) {
 class App extends React.Component{
   constructor(props) {
     super(props)
-    this.props.setScreenWidth(window.innerWidth)
+    this.props.setWindowSize()
     this.toTop = this.toTop.bind(this)
   }
 
   componentDidMount(){
-    this.props.setScreenWidth(window.innerWidth)
-    window.addEventListener("resize", () => {
-      this.props.setScreenWidth(window.innerWidth)
-    })
+    this.props.setWindowSize()
+    window.addEventListener("resize", this.props.setWindowSize)
+  }
+
+  componentWillUnmount(){
+    window.removeEventListener("resize", this.props.setWindowSize)
   }
 
   toTop(){
@@ -123,7 +125,7 @@ class App extends React.Component{
   }
 
   render(){
-    const bounceTransition = this.props.isScreenWidth.sm
+    const bounceTransition = this.props.windowSize === "sm"
       ? bounceTransitionSm
       : bounceTransitionMd
 
@@ -138,7 +140,7 @@ class App extends React.Component{
         <Bg
           className={"blur"}
           scale={1}
-          size={this.props.isScreenWidth.sm ? "cover" : "contain"}
+          size={this.props.windowSize === "sm" ? "cover" : "contain"}
           imgsrc="/assets/img/171221_kikimohu_v2_LineColorChange_transparent_min.png"
           />
 
@@ -154,7 +156,7 @@ class App extends React.Component{
             atLeave={bounceTransition.atLeave}
             atActive={bounceTransition.atActive}
             mapStyles={mapStyles}
-            className={`animated-switch-wrapper ${!this.props.isScreenWidth.sm && "fix-height"}`}
+            className={`animated-switch-wrapper ${!this.props.windowSize === "sm" && "fix-height"}`}
             >
             <Route exact path="/" component={Home} />
             <Route exact path="/graffiti" component={Graffiti} />
@@ -168,16 +170,14 @@ class App extends React.Component{
   }
 }
 
-// const mapStateToProps = state => state // <- OK (router が入っているから)
 const mapStateToProps = state => ({
-  isScreenWidth: state.isScreenWidth,
-  router: state.router, // <- 必須
-  // ここで router を読み込まないと、react-router-transition が動作しない。
+  windowSize: state.windowSize,
+  router: state.router, // <- 必須。ここで router を読み込まないと、react-router-transition が動作しない。
 })
 
 import * as action from "../modules/action"
 const mapStateToDispatch = dispatch => ({
-  setScreenWidth: width => dispatch(action.setScreenWidth(width)),
+  setWindowSize: () => dispatch(action.setWindowSize()),
 })
 
 export default connect(mapStateToProps, mapStateToDispatch)(App)

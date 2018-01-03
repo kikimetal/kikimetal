@@ -1,7 +1,41 @@
-export const setScreenWidth = width => ({
-  type: "SET_WIDTH",
-  width,
-})
+export const setWindowSize = () => {
+  return (dispatch) => {
+
+    const width = window.innerWidth
+    const height = window.outerHeight
+      ? window.innerHeight
+      : window.orientation
+        ? screen.width
+        : screen.height
+        // 肝心な部分。iOS:safari では outerHeight == 0
+
+    dispatch({
+      type: "SET_WINDOW_WIDTH",
+      width,
+    })
+    
+    dispatch({
+      type: "SET_WINDOW_HEIGHT",
+      height,
+    })
+
+    let size
+    if (width < 768) {
+      size = "sm"
+    } else if (width < 1240) {
+      size = "md"
+    } else if (width < 1900) {
+      size = "lg"
+    } else {
+      size = "xl"
+    }
+
+    dispatch({
+      type: "SET_WINDOW_SIZE",
+      size,
+    })
+  }
+}
 
 export const reverseWebsite = () => ({
   type: "REVERSE_WEBSITE",

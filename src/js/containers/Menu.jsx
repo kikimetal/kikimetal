@@ -18,7 +18,7 @@ class Menu extends React.Component{
     this.setState({ isShowMobileMenu: !this.state.isShowMobileMenu })
   }
   render(){
-    if (this.props.isScreenWidth.sm) { // sm
+    if (this.props.windowSize === "sm") { // sm
       return (
         <div className="Menu sm">
 
@@ -68,7 +68,7 @@ class Menu extends React.Component{
 
 // export default Menu
 const mapStateToProps = state => ({
-  isScreenWidth: state.isScreenWidth,
+  windowSize: state.windowSize,
   isReverseWebsite: state.isReverseWebsite,
   router: state.router, // <- 必須 ここで router を読み込まないと、react-router-transition が動作しない。
 })

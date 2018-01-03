@@ -15,11 +15,11 @@ const checkRoute = path => {
   return route ? ROUTES[route] : ROUTES["/"]
 }
 
-const MyHelmet = ({ currentPath, isScreenWidth }) => {
+const MyHelmet = ({ currentPath, windowSize }) => {
   const thisRoute = checkRoute(currentPath)
   return (
     <div className="MyHelmet">
-      {isScreenWidth.sm && <ScrollToTopOnMount />}
+      {windowSize === "sm" && <ScrollToTopOnMount />}
       <Helmet>
         <title>{thisRoute.title}</title>
         <meta name="description" content={thisRoute.description} />
@@ -31,6 +31,7 @@ const MyHelmet = ({ currentPath, isScreenWidth }) => {
 
 const mapStateToProps = state => ({
   currentPath: state.router.location.pathname,
-  isScreenWidth : state.isScreenWidth,
+  windowSize : state.windowSize,
 })
+
 export default connect(mapStateToProps)(MyHelmet)

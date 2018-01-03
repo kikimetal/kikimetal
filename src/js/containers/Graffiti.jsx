@@ -1,23 +1,22 @@
 import React from "react"
-import {connect} from "react-redux"
-// components
-// ...
-// modules
-import action from "../modules/action"
+import { connect } from "react-redux"
 
-const Graffiti = ({ kiki, dispatch_kiki_update }) => (
+const Graffiti = ({ ww, wh }) => (
   <div className="Graffiti page">
 
     <h1 className="page-title">Graffiti</h1>
 
+    <hr />
+    <h2>ww: {ww}</h2>
+    <h2>wh: {wh}</h2>
+    <h2>ori: {window.orientation}</h2>
+
   </div>
 )
 
-export default Graffiti
-// const mapStateToProps = (state) => {
-//   return { kiki: state.kiki }
-// }
-// const mapDispatchToProps = (dispatch) => {
-//   return { dispatch_kiki_update: () => dispatch(action.updateKiki) }
-// }
-// export default connect(mapStateToProps, mapDispatchToProps)(Graffiti)
+const mapStateToProps = state => ({
+  ww: state.windowWidth,
+  wh: state.windowHeight,
+})
+
+export default connect(mapStateToProps)(Graffiti)
