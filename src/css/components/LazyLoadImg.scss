@@ -5,6 +5,7 @@
     display: block;
     width: 100%;
     height: auto;
+    pointer-events: none;
   }
 
   .placeholder{
@@ -24,6 +25,7 @@
     font-size: 20px;
     font-weight: lighter;
     z-index: 1;
+    pointer-events: none;
 
     &.hide{
       opacity: 0;
