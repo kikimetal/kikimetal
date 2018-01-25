@@ -1,14 +1,15 @@
 <?php
-// routing
+// ルーティング情報を引き出す
 $routes = file_get_contents("./assets/routes.json");
 $routes = mb_convert_encoding($routes, 'UTF8', 'ASCII,JIS,UTF-8,EUC-JP,SJIS-WIN');
 $routesArray = json_decode($routes, true); // 配列へ
-// アクセスされたURLを取得
+// アクセスされたPathを取得
 $requestPath = $_SERVER["REQUEST_URI"];
 if ($requestPath !== "/") {
   // "/" === root 以外へのアクセスは、末尾の "/" は除去
   $requestPath = rtrim($requestPath, "/");
 }
+
 // ルーティング。ステータスコードも返す。
 $route = false;
 if (isset($routesArray[$requestPath])) {
@@ -45,11 +46,12 @@ $assets = get_assets_path();
   <!-- stylesheet -->
   <link href="https://fonts.googleapis.com/css?family=Bungee+Hairline|Codystar:300,400|Fascinate|Fredericka+the+Great|Libre+Barcode+128+Text|Londrina+Outline" rel="stylesheet">
   <link rel="stylesheet" href="<?= $assets ?>/css/bundle.css">
+
   <script>
     window.__ROUTES__ = <?= $routes ?>;
   </script>
-  <script src="<?= $assets ?>/vender/fontawesome-all.min.js" charset="utf-8"></script>
-  <script src="<?= $assets ?>/js/bundle.js" charset="utf-8"></script>
+  <script async src="<?= $assets ?>/vender/fontawesome-all.min.js"></script>
+  <script async defer src="<?= $assets ?>/js/bundle.js"></script>
 
 </body>
 </html>
