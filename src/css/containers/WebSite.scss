@@ -1,9 +1,8 @@
 .WebSite{
-  position: relative;
-  background: rgba(0, 0, 0, 0.2);
 
-  .page-title{
-    color: white;
+  .first-view{
+    background-image: url("/assets/img/180125_ribon-min.jpg");
+    background-size: cover;
   }
 
   p{
@@ -21,10 +20,15 @@
     flex-flow: column;
 
     .Site{
-      font-family: "RictyDiminished-Regular", monospace;
       margin-bottom: 100px;
       background: #fff;
       overflow: hidden;
+      width: 100%;
+      color: #333;
+
+      .flex-item{
+        overflow: hidden;
+      }
 
       &:last-of-type{
         margin-bottom: 0;
@@ -39,8 +43,26 @@
         font-weight: normal;
       }
 
+      p{
+        line-height: 2;
+      }
+
       .description{
         padding: 0.7em 1em 0;
+      }
+
+      .img-link{
+        transition:
+          filter 0.5s var(--my-ease-out),
+          transform 0.6s ease;
+        &:hover{
+          transition:
+            filter 0.4s var(--my-ease-out),
+            transform 3s var(--my-ease-out);
+
+          filter: brightness(0.7);
+          transform: scale(1.07);
+        }
       }
     }
 

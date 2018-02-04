@@ -4,12 +4,23 @@
 
 @font-face {
   font-family: "RictyDiminished-Regular";
-  src: url("/assets/font/RictyDiminished-Regular.ttf") format(”truetype”);
+  src: url("/assets/font/RictyDiminished-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "SF-Pro-Display-Ultralight";
+  src: url("/assets/font/SF-Pro-Display-Ultralight.otf") format("opentype");
+}
+@font-face {
+  font-family: "AdobeSongStd-Light";
+  src: url("/assets/font/AdobeSongStd-Light.otf") format("opentype");
 }
 *{
   box-sizing: border-box;
 }
 html{
+  --kiki-pink: rgb(255, 157, 238);
+  --kiki-lavender: rgb(139, 131, 218);
+  --my-ease-out: cubic-bezier(0.165, 0.84, 0.44, 1);
 
   font-size: 14px;
   @media screen and (min-width: 1900){ // xl
@@ -17,21 +28,13 @@ html{
   }
 
   body{
-    // <!-- font
-    //   font-family: 'Bungee Hairline', cursive;
-    //   font-family: 'Codystar', cursive;
-    //   font-family: 'Fascinate', cursive;
-    //   font-family: 'Fredericka the Great', cursive;
-    //   font-family: 'Libre Barcode 128 Text', cursive;
-    //   font-family: 'Londrina Outline', cursive;
-    //  -->
-    // font-family: "Londrina Outline", "RictyDiminished-Regular", monospace;
-    // font-family: "Fredericka the Great", "RictyDiminished-Regular", monospace;
-    font-family: "RictyDiminished-Regular", monospace;
+    font-family: "SF-Pro-Display-Ultralight", "AdobeSongStd-Light", "RictyDiminished-Regular", monospace;
+    letter-spacing: 1px;
     color: #333;
     text-align: center;
   }
 }
+
 p{
   line-height: 2;
 }

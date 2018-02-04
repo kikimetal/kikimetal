@@ -37,7 +37,8 @@ class WebSite extends React.Component{
     }
     return (
       <div className="WebSite page">
-        <h1 className="page-title top">WebSite</h1>
+
+        <h1 className="page-title">WebSite</h1>
 
         <div className={`Sites ${this.props.isReverse && "reverse"}`}>
           {this.props.data.map((data) => (

@@ -42,6 +42,11 @@ $assets = get_assets_path();
 <body>
 
   <div id="app"></div>
+  <div id="loader">
+    <div class="Bg"></div>
+    <span class="loader-text">LOADING</span>
+    <span class="loader-circle"></span>
+  </div>
 
   <!-- stylesheet -->
   <link href="https://fonts.googleapis.com/css?family=Bungee+Hairline|Codystar:300,400|Fascinate|Fredericka+the+Great|Libre+Barcode+128+Text|Londrina+Outline" rel="stylesheet">
@@ -50,8 +55,8 @@ $assets = get_assets_path();
   <script>
     window.__ROUTES__ = <?= $routes ?>;
   </script>
-  <script async src="<?= $assets ?>/vender/fontawesome-all.min.js"></script>
-  <script async defer src="<?= $assets ?>/js/bundle.js"></script>
+  <script defer src="<?= $assets ?>/vender/fontawesome-all.min.js"></script>
+  <script defer src="<?= $assets ?>/js/bundle.js"></script>
 
 </body>
 </html>

@@ -4,6 +4,12 @@
   --kiki-pink: rgb(149, 213, 205);
   --kiki-orange: rgb(255, 162, 75);
 
+  opacity: 0;
+  transition: opacity 0.5s;
+  &.app-fade-in{
+    opacity: 1;
+  }
+
   // ******************** sm: mobile layout ********************
 
   .Header{
@@ -46,34 +52,13 @@
       }
 
       .page{
-        padding: 0 2vw;
+        // padding: 0 2vw;
         width: 100%;
         min-height: 100%;
 
         .page-title{
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 300px;
-          &.top{
-            padding-top: 60px;
-          }
-          &.bottom{
-            padding-bottom: 20px;
-          }
-        }
-
-        section{
-          width: 100%;
-          color: dimgrey;
-          border-radius: 4px;
-          h1{
-            font-weight: bold;
-            border-bottom: 1px solid lightgrey;
-          }
-          p{
-            line-height: 2;
-          }
+          padding: 30vh 0;
+          font-size: 100px;
         }
       }
 

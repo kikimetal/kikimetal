@@ -22,7 +22,7 @@ LightsPath.defaultProps = {
 
 const LightsSvg = ({ width, height }) => {
 
-  const num = Math.floor(width / 10)
+  const num = Math.floor(width / 20)
   const arr = new Array(num).fill(null)
 
   return (
@@ -31,7 +31,7 @@ const LightsSvg = ({ width, height }) => {
         <LightsPath
           key={`lights-svg-path-${index}`}
           rotate={getRandomInt(0, 90)}
-          scale={getRandomInt(1, 4) < 4 ? getRandomInt(7, 25) / 10 : getRandomInt(35, 60) / 10}
+          scale={getRandomInt(1, 5) < 5 ? getRandomInt(4, 16) / 10 : getRandomInt(40, 50) / 10}
           x={getRandomInt(0, width)}
           y={getRandomInt(0, height)}
           delay={getRandomInt(0, 300) / 100}

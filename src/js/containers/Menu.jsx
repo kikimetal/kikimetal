@@ -50,11 +50,19 @@ class Menu extends React.Component{
       return (
         <div className="Menu md">
           <div className="container">
+
+            {
+              this.props.router.location.pathname === "/website" &&
+              <div className="sort-switch">
+                <Btn onClick={this.props.reverseWebsite}><i className="fas fa-bug" />{this.props.isReverseWebsite ? "古い" : "新しい"}順にする</Btn>
+              </div>
+            }
+
             <ul className="link-list">
-              {
+              {/*{
                 this.props.router.location.pathname === "/website" &&
                 <li className="link-list-item"><Btn onClick={this.props.reverseWebsite}><i className="fas fa-bug" />{this.props.isReverseWebsite ? "古い" : "新しい"}順にする</Btn></li>
-              }
+              }*/}
               <li className="link-list-item"><NavLink exact to="/"><Btn><i className="fas fa-bug" />Home</Btn></NavLink></li>
               <li className="link-list-item"><NavLink exact to="/graffiti"><Btn><i className="fab fa-accusoft" />Graffiti</Btn></NavLink></li>
               <li className="link-list-item"><NavLink to="/website"><Btn><i className="fas fa-code" />WebSite</Btn></NavLink></li>
