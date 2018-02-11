@@ -35,7 +35,7 @@ $assets = get_assets_path();
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <!-- react-helmet context meta -->
-  <title><? $route["title"] ?></title>
+  <title><?= $route["title"] ?></title>
   <meta name="description" content="<?= $route["description"] ?>" data-react-helmet="true" />
   <link rel="canonical" href="<?= $route["canonical"] ?>" data-react-helmet="true" />
 </head>
