@@ -49,7 +49,7 @@ $assets = get_assets_path();
   </div>
 
   <!-- stylesheet -->
-  <link href="https://fonts.googleapis.com/css?family=Bungee+Hairline|Codystar:300,400|Fascinate|Fredericka+the+Great|Libre+Barcode+128+Text|Londrina+Outline" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/css?family=Bungee+Hairline|Codystar:300,400|Fascinate|Fredericka+the+Great|Libre+Barcode+128+Text|Londrina+Outline" rel="stylesheet"> -->
   <link rel="stylesheet" href="<?= $assets ?>/css/bundle.css">
 
   <script>
