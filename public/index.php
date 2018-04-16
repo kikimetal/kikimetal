@@ -27,6 +27,9 @@ $assets = get_assets_path();
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+  <!-- TODO remove env production-->
+  <script src="http://localhost:8097"></script>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <link rel="shortcut icon" href="<?= $assets ?>/img/favicon.ico">
